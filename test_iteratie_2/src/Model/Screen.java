@@ -13,8 +13,25 @@ import Model.Handler.EditLabelHandler;
 
 public class Screen {
 	
-	public Screen() {}
+	/////////////////// Singleton ///////////////////
+	private static Screen instance = null;
+	
+	private Screen() {}
+	
+	private synchronized static void createInstance() {
+		if(instance == null) {instance = new Screen();}
+	}
+	
+	public static Screen getInstance() {
+		if(instance==null) {createInstance();}
+		return instance;
+	}
 
+	////////////////////////////////////////////////
+	
+	
+	
+	
 	private Stack<Canvas> subWindows = new Stack<Canvas>();
 	
 	private ArrayList<Interaction> interactions = new ArrayList<Interaction>();

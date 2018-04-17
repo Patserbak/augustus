@@ -42,7 +42,7 @@ public class MyCanvasWindow extends CanvasWindow{
 	
 	
 	private Canvas canvas;
-	private Screen screen = new Screen();
+	private Screen screen = Screen.getInstance();
 	
 	/**
 	 * The constructor for MyCanvasWindow.
