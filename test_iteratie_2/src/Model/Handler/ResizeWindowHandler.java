@@ -22,18 +22,33 @@ public class ResizeWindowHandler extends Handler{
 	
 	public static void handle(Canvas canvas, int x, int y, Window action) {
 		switch(action) {
-		case ResizeX:
-			canvas.resizeXCanvas(x);
+		case ResizeXRight:
+			canvas.resizeXRightCanvas(x);
 			break;
-		case ResizeY:
-			canvas.resizeYCanvas(y);
-			updateYPositionPartySequenceDiagram(canvas);
-			updateYPositionLMessageLabelsSequenceDiagram(canvas);
+		case ResizeXLeft:
+			canvas.resizeXLeftCanvas(x);
 			break;
-		case ResizeCorner:
-			canvas.resizeCornerCanvas(x,y);
-			updateYPositionLMessageLabelsSequenceDiagram(canvas);
-			updateYPositionPartySequenceDiagram(canvas);
+		case ResizeYTop:
+			canvas.resizeYTopCanvas(y);
+			break;
+		case ResizeYLower:
+			canvas.resizeYLowerCanvas(y);
+			break;
+		case ResizeLowerRightCorner:
+			canvas.resizeXRightCanvas(x);
+			canvas.resizeYLowerCanvas(y);
+			break;
+		case ResizeLowerLeftCorner:
+			canvas.resizeXLeftCanvas(x);
+			canvas.resizeYLowerCanvas(y);
+			break;
+		case ResizeTopLeftCorner:
+			canvas.resizeXLeftCanvas(x);
+			canvas.resizeYTopCanvas(y);
+			break;
+		case ResizeTopRightCorner:
+			canvas.resizeXRightCanvas(x);
+			canvas.resizeYTopCanvas(y);
 			break;
 		}
 	}

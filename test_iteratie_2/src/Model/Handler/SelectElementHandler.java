@@ -50,6 +50,10 @@ public class SelectElementHandler extends Handler {
 	 */
 	public static void handle(Canvas canvas, int x, int y, Mouse id) {
 		
+		int oldXorigine = canvas.getOrigineX();
+		int oldYorigine = canvas.getOrigineY();
+		
+		
 		if(id==Mouse.SINGLECLICK) {
 			
 			// LET OP!
@@ -75,23 +79,60 @@ public class SelectElementHandler extends Handler {
 			Party p = getPartyAt(x, y, canvas); if(p==null) {System.out.println("NUll_1");}
 			Party lifeLine = approxLifeLine(x, canvas); if(lifeLine==null) {System.out.println("NULL_2");}
 			
-			int oldXorigine = canvas.getOrigineX();
-			int oldYorigine = canvas.getOrigineY();
 			int newXorigine = (x-(canvas.getFramework().getBar().getWidth(canvas)/2));
 			int newYorigine = (y-(canvas.getFramework().getBar().getHeight()/2));
 			
 			
-			if( moveCanvas(canvas, x,y)) {
+			if (resizeLowerRightCornerCanvas(canvas, x, y)) {
+				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeLowerRightCorner);
+				// Update Party and message Positions!!
+				MoveWindowHandler.updatePartyPositions(canvas ,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+				MoveWindowHandler.updateMessagePositions(canvas,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+			}
+			else if (resizeLowerLeftCornerCanvas(canvas, x, y)) {
+				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeLowerLeftCorner);
+				// Update Party and message Positions!!
+				MoveWindowHandler.updatePartyPositions(canvas ,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+				MoveWindowHandler.updateMessagePositions(canvas,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+			}
+			else if (resizeTopLeftCornerCanvas(canvas, x, y)) {
+				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeTopLeftCorner);
+				// Update Party and message Positions!!
+				MoveWindowHandler.updatePartyPositions(canvas ,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+				MoveWindowHandler.updateMessagePositions(canvas,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+			}
+			else if (resizeTopRightCornerCanvas(canvas, x, y)) {
+				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeTopRightCorner);
+				// Update Party and message Positions!!
+				MoveWindowHandler.updatePartyPositions(canvas ,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+				MoveWindowHandler.updateMessagePositions(canvas,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+			}
+			else if (resizeXRightCanvas(canvas, x, y)  ) {
+				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeXRight);
+				// Update Party and message Positions!!
+				MoveWindowHandler.updatePartyPositions(canvas ,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+				MoveWindowHandler.updateMessagePositions(canvas,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+			}
+			else if (resizeXLeftCanvas(canvas, x, y)  ) {
+				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeXLeft);
+				// Update Party and message Positions!!
+				MoveWindowHandler.updatePartyPositions(canvas ,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+				MoveWindowHandler.updateMessagePositions(canvas,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+			}
+			else if (resizeYTopCanvas(canvas, x, y)  ) {
+				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeYTop);
+				// Update Party and message Positions!!
+				MoveWindowHandler.updatePartyPositions(canvas ,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+				MoveWindowHandler.updateMessagePositions(canvas,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+			}
+			else if (resizeYLowerCanvas(canvas, x, y)  ) {
+				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeYLower);
+				// Update Party and message Positions!!
+				MoveWindowHandler.updatePartyPositions(canvas ,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+				MoveWindowHandler.updateMessagePositions(canvas,oldXorigine,oldYorigine, canvas.getOrigineX(),canvas.getOrigineY());
+			}
+			else if( moveCanvas(canvas, x,y)) {
 				MoveWindowHandler.handle(canvas ,oldXorigine,oldYorigine, newXorigine,newYorigine);
-			}
-			else if( resizeCornerCanvas(canvas, x, y)) {
-				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeCorner);
-			}
-			else if( resizeXCanvas(canvas,x) ) {
-				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeX);
-			}
-			else if( resizeYCanvas(canvas,y)) {
-				ResizeWindowHandler.handle(canvas, x, y, Window.ResizeY);
 			}
 			else if(p  != null) {
 				canvas.setMovePartyMode();
@@ -105,7 +146,8 @@ public class SelectElementHandler extends Handler {
 				lifeLine.setSelectedYPosition(y);
 				System.out.println("AddMessageMode");
 				System.out.println("LifeLine SELECTED: "+lifeLine.getSelected());}
-			}
+		}
+		
 		else if ( id == Mouse.RELEASED && canvas.getMode() == Mode.ADDMESSAGE){
 			resetRoles(canvas);
 			canvas.setDefaultMode();
@@ -176,25 +218,51 @@ public class SelectElementHandler extends Handler {
 		return false;
 	}
 	
-	private static boolean resizeXCanvas(Canvas canvas, int xMouse ) {
-		int xLow = canvas.getOrigineX() + canvas.getWidth() - 4;
-		int xHigh = xLow + 8;
-		if ( xMouse >= xLow && xMouse <= xHigh) {
+	private static boolean resizeXRightCanvas(Canvas canvas, int xMouse, int yMouse ) {		
+		int origineX = canvas.getOrigineX();
+		int origineY = canvas.getOrigineY();
+		int width = canvas.getWidth();
+		int height = canvas.getHeight();
+		// Right check 
+		if ( (origineX + width -4) <= xMouse && (origineX + width +4) >= xMouse	 && (origineY -4) <= yMouse && (origineY +4 + height) >= yMouse ) {
+			return true;
+		}
+		return false;		
+	}
+	private static boolean resizeXLeftCanvas(Canvas canvas, int xMouse, int yMouse) {
+		int origineX = canvas.getOrigineX();
+		int origineY = canvas.getOrigineY();
+		int width = canvas.getWidth();
+		int height = canvas.getHeight();
+		// Left check
+		if( (origineX-4) <= xMouse && (origineX+4) >= xMouse && (origineY -4) <= origineY && (origineY + height+4) >= yMouse) {
 			return true;
 		}
 		return false;
 	}
-	
-	private static boolean resizeYCanvas(Canvas canvas, int yMouse) {
-		int yLow = canvas.getOrigineY() + canvas.getHeight() -4;
-		int yHigh = yLow + 8;
-		if(yMouse  >= yLow && yMouse <= yHigh) {
+	private static boolean resizeYTopCanvas(Canvas canvas, int xMouse, int yMouse) {
+		int origineX = canvas.getOrigineX();
+		int origineY = canvas.getOrigineY();
+		int width = canvas.getWidth();
+		int height = canvas.getHeight();
+		// Top check
+		if( (origineX-4) <= xMouse && xMouse <= (origineX + width +4) && (origineY -4) <= yMouse && (origineY +4) >= yMouse) {
 			return true;
 		}
 		return false;
 	}
-	
-	private static boolean resizeCornerCanvas(Canvas canvas, int xMouse, int yMouse) {
+	private static boolean resizeYLowerCanvas(Canvas canvas,int xMouse, int yMouse) {
+		int origineX = canvas.getOrigineX();
+		int origineY = canvas.getOrigineY();
+		int width = canvas.getWidth();
+		int height = canvas.getHeight();
+		// Lower check
+		if( (origineX-4) <= xMouse && (origineX + width +4) >= xMouse && (origineY +height -4) <= yMouse && (origineY+height+4)>= yMouse ) {
+			return true;
+		}
+		return  false;
+	}
+	private static boolean resizeLowerRightCornerCanvas(Canvas canvas, int xMouse, int yMouse) {
 		int xLow = canvas.getOrigineX() + canvas.getWidth() - 4;
 		int xHigh = xLow + 8;
 		int yLow = canvas.getOrigineY() + canvas.getHeight() -4;
@@ -204,5 +272,34 @@ public class SelectElementHandler extends Handler {
 		}
 		return false;
 	}
-
+	private static boolean resizeLowerLeftCornerCanvas(Canvas canvas, int xMouse, int yMouse) {
+		int xLow = canvas.getOrigineX() - 4;
+		int xHigh = xLow + 8;
+		int yLow = canvas.getOrigineY() + canvas.getHeight() -4;
+		int yHigh = yLow + 8;
+		if ( xMouse >= xLow && xMouse <= xHigh && yMouse  >= yLow && yMouse <= yHigh) {
+			return true;
+		}
+		return false;
+	}
+	private static boolean resizeTopLeftCornerCanvas(Canvas canvas, int xMouse, int yMouse) {
+		int xLow = canvas.getOrigineX() - 4;
+		int xHigh = xLow + 8;
+		int yLow = canvas.getOrigineY()  -4;
+		int yHigh = yLow + 8;
+		if ( xMouse >= xLow && xMouse <= xHigh && yMouse  >= yLow && yMouse <= yHigh) {
+			return true;
+		}
+		return false;
+	}
+	private static boolean resizeTopRightCornerCanvas(Canvas canvas, int xMouse, int yMouse) {
+		int xLow = canvas.getOrigineX() + canvas.getWidth() - 4;
+		int xHigh = xLow + 8;
+		int yLow = canvas.getOrigineY() -4;
+		int yHigh = yLow + 8;
+		if ( xMouse >= xLow && xMouse <= xHigh && yMouse  >= yLow && yMouse <= yHigh) {
+			return true;
+		}
+		return false;
+	}
 }

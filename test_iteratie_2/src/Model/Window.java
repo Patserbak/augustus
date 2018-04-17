@@ -1,7 +1,12 @@
 package Model;
 
 public enum Window {
-	ResizeX,
-	ResizeY,
-	ResizeCorner
+	ResizeXRight,
+	ResizeXLeft,
+	ResizeYTop,
+	ResizeYLower,
+	ResizeLowerRightCorner,
+	ResizeLowerLeftCorner,
+	ResizeTopLeftCorner,
+	ResizeTopRightCorner
 }

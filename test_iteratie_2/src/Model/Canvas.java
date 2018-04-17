@@ -417,24 +417,48 @@ public class Canvas {
 	public void setMode(Mode m) {
 		this.mode = m;
 	}
-	public void resizeXCanvas(int xMouse) {
+	public void resizeXRightCanvas(int xMouse) {
 		this.width = Math.max(this.getFramework().getBar().getMinimumWidth()+4, xMouse - this.getOrigineX());
 	}
-	public void resizeYCanvas(int yMouse) {
+	public void resizeYLowerCanvas(int yMouse) {
 		this.height =  Math.max(this.getFramework().getBar().getHeight()+4, yMouse - this.getOrigineY());
 	}
-
+	public void resizeXLeftCanvas(int xMouse) {
+		int oldOrigine = this.getOrigineX();
+		int oldWidth = this.getWidth();
+		if( xMouse <= oldOrigine) {
+			this.width += Math.abs(oldOrigine-xMouse);
+			this.origineX = oldOrigine - Math.abs(oldOrigine -xMouse);
+		} else {
+			this.width -= Math.abs(oldOrigine-xMouse);
+			this.origineX = oldOrigine + Math.abs(oldOrigine -xMouse);
+		}
+		if( this.getFramework().getBar().getMinimumWidth()+4 >= this.width	) {
+			this.origineX = oldOrigine;
+			this. width = oldWidth;
+		}
+	}
+	public void resizeYTopCanvas(int yMouse) {
+		int oldOrigine = this.getOrigineY();
+		int oldHeight = this.height;
+		if( yMouse <= oldOrigine) {
+			this.height += Math.abs(oldOrigine-yMouse);
+			this.origineY = oldOrigine - Math.abs(oldOrigine -yMouse);
+		} else {
+			this.height -= Math.abs(oldOrigine-yMouse);
+			this.origineY = oldOrigine + Math.abs(oldOrigine -yMouse);
+		}
+		if (this.getFramework().getBar().getHeight()+4 >= this.height ) {
+			this.origineY = oldOrigine;
+			this.height = oldHeight;
+		}
+	}
 	public void setWidth(int width) {
 		this.width = width;
 	}
 
 	public void setHeight(int height) {
 		this.height = height;
-	}
-
-	public void resizeCornerCanvas(int xMouse, int yMouse) {
-		this.width = Math.max(this.getFramework().getBar().getMinimumWidth()+4, xMouse - this.getOrigineX());
-		this.height =  Math.max(this.getFramework().getBar().getHeight()+4, yMouse - this.getOrigineY());
 	}
 	public static int getAvailablePartyNumber(Canvas canvas) {
 		LinkedList<Party> copyParties = new LinkedList<Party>();
