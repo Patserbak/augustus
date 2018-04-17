@@ -17,7 +17,6 @@ public class Canvas {
 
 	private HashSet<Party> parties;
 	private HashSet<Message> messages;
-	private boolean sequenceDiagram = true;
 	
 	private int width;
 	private int height;
@@ -216,31 +215,12 @@ public class Canvas {
 	}
 	/**
 	 * 
-	 * Check if the sequence diagram is presented
-	 * 
-	 * @return
-	 */
-	public boolean isSequenceDiagram() {
-		return sequenceDiagram;
-	}
-	/**
-	 * 
-	 * The sequence diagram is presented
-	 * 
-	 * @param sequenceDiagram
-	 */
-	public void setSequenceDiagram(boolean sequenceDiagram) {
-		this.sequenceDiagram = sequenceDiagram;
-	}
-	/**
-	 * 
 	 * Switch from diagram
 	 * 
 	 */
 	public void switchView() {
-		if(sequenceDiagram) {sequenceDiagram=false;}
-		if(!sequenceDiagram) {sequenceDiagram=true;}
-			
+		if(getView() == View.SEQUENCE) {setCommunicationDiagram();}
+		else if(getView() == View.COMMUNICATION) {setSequenceDiagram();}	
 	}
 	/**
 	 * 

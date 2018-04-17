@@ -17,7 +17,7 @@ public abstract class Handler {
 	 */
 	
 	public static Party getPartyAt(int x, int y, Canvas canvas) {
-		if(canvas.isSequenceDiagram()) {return getPartySequenceDiagram(x,y,canvas);}
+		if(canvas.getView() == Canvas.View.SEQUENCE) {return getPartySequenceDiagram(x,y,canvas);}
 	    else {return getPartyCommunicationDiagram(x,y,canvas);}
 	}
 
@@ -113,7 +113,7 @@ public abstract class Handler {
 	}
 
 	protected static Label getLabelAt(int x, int y, Canvas canvas) {
-		if(canvas.isSequenceDiagram()) {return getLabelSequenceDiagram(x,y,canvas);}
+		if(canvas.getView() == Canvas.View.SEQUENCE) {return getLabelSequenceDiagram(x,y,canvas);}
 		else{return getLabelCommunicationDiagram(x,y,canvas);}
 		
 	}

@@ -36,7 +36,7 @@ public class titleBar {
 		
 	public void draw(Canvas c, Graphics g) {
 
-		if ( c.isSequenceDiagram()) {
+		if (c.getView() == Canvas.View.SEQUENCE) {
 			title = "Sequence Diagram";
 		} else  {
 			title = "Communication Diagram";

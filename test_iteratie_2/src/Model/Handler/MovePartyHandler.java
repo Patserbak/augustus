@@ -34,7 +34,7 @@ public class MovePartyHandler extends Handler {
 		if(selected==null) {return;}
 		
 		// Change Coordinates
-		if(canvas.isSequenceDiagram()) {
+		if(canvas.getView() == Canvas.View.SEQUENCE) {
 			selected.setPosSeq(x, selected.getPosSeq().getY());
 			selected.getLabel().setLabelPositionSeq(x,selected.getLabel().getLabelPositionSequence().getY());
 			for (Message m : canvas.getMessages()) {
@@ -45,7 +45,7 @@ public class MovePartyHandler extends Handler {
 				}
 			}
 		}
-		if(!canvas.isSequenceDiagram()) {
+		if(canvas.getView() == Canvas.View.COMMUNICATION) {
 			selected.setPosComm(x-selected.getLabel().getWidth()/2, y);
 			selected.getLabel().setLabelPositionComm(x,y);
 		}

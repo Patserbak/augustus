@@ -40,7 +40,7 @@ public class EditLabelHandler extends Handler{
 				return;
 			} else if (character == KeyEvent.VK_ESCAPE)
 				return;			
-			if(canvas.isSequenceDiagram())
+			if(canvas.getView() == Canvas.View.SEQUENCE)
 				label.setLabelPositionSeq(new Point(x, y));
 			else 
 				label.setLabelPositionComm(new Point(x, y));
@@ -80,7 +80,7 @@ public class EditLabelHandler extends Handler{
 				return;
 			} else if (character == KeyEvent.VK_ESCAPE)
 				return;			
-			if(canvas.isSequenceDiagram())
+			if(canvas.getView() == Canvas.View.SEQUENCE)
 				label.setLabelPositionSeq(new Point(x, y));
 			else 
 				label.setLabelPositionComm(new Point(x, y));

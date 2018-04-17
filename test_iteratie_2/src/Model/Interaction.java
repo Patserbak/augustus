@@ -85,7 +85,7 @@ public class Interaction {
 		} else if (id == KeyEvent.KEY_TYPED) {
 			for(Party p : canvas.getParties()){
 				if(p.getLabel().getSelected()) {
-					if(canvas.isSequenceDiagram())
+					if(canvas.getView() == Canvas.View.SEQUENCE)
 						EditLabelHandler.handle(canvas, p.getLabel(), p, keyChar, p.getLabel().getLabelPositionSequence().getX(), p.getLabel().getLabelPositionSequence().getY());
 					else 
 						EditLabelHandler.handle(canvas, p.getLabel(), p, keyChar, p.getLabel().getLabelPositionComm().getX(), p.getLabel().getLabelPositionComm().getY());
@@ -94,7 +94,7 @@ public class Interaction {
 			}
 			for(Message m : canvas.getMessages()){
 				if(m.getLabel().getSelected()) {
-					if(canvas.isSequenceDiagram())
+					if(canvas.getView() == Canvas.View.SEQUENCE)
 						EditLabelHandler.handle(canvas, m.getLabel(), keyChar, m.getLabel().getLabelPositionSequence().getX(), m.getLabel().getLabelPositionSequence().getY());
 					else 
 						EditLabelHandler.handle(canvas, m.getLabel(), keyChar, m.getLabel().getLabelPositionComm().getX(), m.getLabel().getLabelPositionComm().getY());

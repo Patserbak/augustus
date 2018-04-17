@@ -73,7 +73,7 @@ public class MyCanvasWindow extends CanvasWindow{
 				
 		for(Canvas c : screen.getSubWindows()) {
 			View v;
-			if (c.isSequenceDiagram())
+			if (c.getView() == Canvas.View.SEQUENCE)
 				v = new SequenceDiagram();
 			else
 				v = new CommunicationDiagram();

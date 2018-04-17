@@ -14,10 +14,6 @@ public class SwitchViewHandler extends Handler{
 	 */
 	
 	public static void handle(Canvas canvas) {
-		if(canvas.isSequenceDiagram()) {
-			canvas.setSequenceDiagram(false);
-		} else {
-			canvas.setSequenceDiagram(true);
-		}
+		canvas.switchView();
 	}
 }
