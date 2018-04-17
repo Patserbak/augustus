@@ -40,18 +40,26 @@ import View.View;
  */
 public class MyCanvasWindow extends CanvasWindow{
 	
+	
+	private Canvas canvas;
+	private Screen screen = new Screen();
+	
 	/**
 	 * The constructor for MyCanvasWindow.
+	 * 
 	 * @param title 		The title for this window.
 	 */
+	
 	public MyCanvasWindow(String title) {
 		super(title);
 	}
 	
 	/**
 	 * Paints the current window using the canvas data.
+	 * 
 	 * @param g 		The Graphics object used for painting the window.
 	 */
+	
 	@Override
 	protected void paint(Graphics g){
 		g.setColor(Color.GRAY);
@@ -76,11 +84,13 @@ public class MyCanvasWindow extends CanvasWindow{
 	
 	/**
 	 * Handles a recorded mouse event.
-	 * @param id 		The kind of mouse event to be handled.
-	 * @param x 		The x coordinate clicked.
-	 * @param y 		The y coordinate clicked.
-	 * @param clickCount 		The amount of times clicked.
+	 * 
+	 * @param id 			The kind of mouse event to be handled.
+	 * @param x 			The x coordinate clicked.
+	 * @param y 			The y coordinate clicked.
+	 * @param clickCount 	The amount of times clicked.
 	 */
+	
 	@Override
 	protected void handleMouseEvent(int id, int x, int y, int clickCount){
 		// 
@@ -115,31 +125,24 @@ public class MyCanvasWindow extends CanvasWindow{
 	
 	/**
 	 * Handles an event where a key is pressed.
+	 * 
 	 * @param id 		The kind of key event.
 	 * @param keyCode		The code of the key pressed.
 	 * @param keyChar		The key pressed.
 	 */
+	
 	@Override
 	protected void handleKeyEvent(int id, int keyCode, char keyChar){
 		screen.keyPressed(id, keyCode, keyChar);
 		repaint();
 	}
 	
-	private Canvas canvas;
-	private Screen screen = new Screen();
-	
-	/**
-	 * Gives the used canvas.
-	 * @return 		The used canvas.
-	 */
-	public Canvas getCanvas() {
-		return this.canvas;
-	}
-	
 	/**
 	 * The main method.
+	 * 
 	 * @param args		Unused input.
 	 */
+	
 	public static void main(String[] args) {
 		
 //		2 -- Create a recording
