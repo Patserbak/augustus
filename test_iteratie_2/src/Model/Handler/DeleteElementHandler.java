@@ -1,12 +1,18 @@
-package Model;
+package Model.Handler;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import Model.ADJUSTED_TYPE;
+import Model.Canvas;
+import Model.InvocationMessage;
+import Model.Message;
+import Model.Party;
+
 /**
  * A handler that handles the actions of an element being deleted.
  */
-public class DeleteElementHandler {
+public class DeleteElementHandler extends Handler{
 	
 	/**
 	 * Handles an element being deleted on the canvas.
@@ -49,7 +55,7 @@ public class DeleteElementHandler {
 		for( Message messageToDelete : toDeleteMessages) {
 			
 			// Delete all message that have a higher order and below the order of the resultmessage order(correcting sequence diagram!)
-			if( messageToDelete.getClass() == Model.InvocationMessage.class) {
+			if( messageToDelete.getClass() == InvocationMessage.class) {
 				int orderResultMessage = messageToDelete.getResult().getOrder();
 				ArrayList<Message> tempList = new ArrayList<Message>();
 				for(Message m :canvas.getMessages()) {

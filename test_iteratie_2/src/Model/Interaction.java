@@ -6,6 +6,18 @@ import java.util.HashSet;
 import java.util.Random;
 
 import Controller.Mouse;
+import Model.Handler.AddMessageHandler;
+import Model.Handler.AddPartyHandler;
+import Model.Handler.CloseWindowHandler;
+import Model.Handler.DeleteElementHandler;
+import Model.Handler.EditLabelHandler;
+import Model.Handler.Handler;
+import Model.Handler.MovePartyHandler;
+import Model.Handler.MoveWindowHandler;
+import Model.Handler.ResizeWindowHandler;
+import Model.Handler.SelectElementHandler;
+import Model.Handler.SetPartyTypeHandler;
+import Model.Handler.SwitchViewHandler;
 
 public class Interaction {
 	
@@ -21,7 +33,7 @@ public class Interaction {
 	private ArrayList<Canvas> subWindows = new ArrayList<Canvas>();
 	private Random randNumberPos = new Random();
 
-	ArrayList<Canvas> getSubWindows(){
+	public ArrayList<Canvas> getSubWindows(){
 		return subWindows;
 	}
 	
@@ -48,16 +60,8 @@ public class Interaction {
 				}
 		}
 		
-		// Find any canvas objects that need to be closed/deleted!
-		ArrayList<Canvas> toBeDeleted = new ArrayList<Canvas>();
-		for( Canvas c :subWindows) {
-			if(c.getMode()  == Mode.CLOSING) {
-				toBeDeleted.add(c);
-			}
-		}
-		for (Canvas c : toBeDeleted) {
-			subWindows.remove(c);
-		}
+		CloseWindowHandler.handle(subWindows);
+		
 	}
 
 	public void keyPressed(int id, int keyCode, char keyChar, Canvas canvas) {
@@ -372,11 +376,11 @@ public class Interaction {
 			Message messageToAdd = (Message) m.clone();
 			notUpdatedCanvas.addMessage(messageToAdd);
 		}
-		SelectElementHandler.updateMessagePositions(notUpdatedCanvas , oldXorigine, oldYorigine, newXorigine, newYorigine);
+		MoveWindowHandler.updateMessagePositions(notUpdatedCanvas , oldXorigine, oldYorigine, newXorigine, newYorigine);
 		for( Message m : notUpdatedCanvas.getMessages()) {
 			Interaction.updateMessagePropertiesAfterClone(updatedCanvas,notUpdatedCanvas, m);
 		}
-		SelectElementHandler.updateYPositionLMessageLabelsSequenceDiagram(notUpdatedCanvas);
+		ResizeWindowHandler.updateYPositionLMessageLabelsSequenceDiagram(notUpdatedCanvas);
 	}
 }
 

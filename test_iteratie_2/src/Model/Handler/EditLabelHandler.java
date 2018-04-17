@@ -1,11 +1,19 @@
-package Model;
+package Model.Handler;
 
 import java.awt.event.KeyEvent;
+
+import Model.ADJUSTED_TYPE;
+import Model.Canvas;
+import Model.InvocationMessage;
+import Model.Label;
+import Model.Message;
+import Model.Party;
+import Model.Point;
 
 /**
  * A handler that handles the actions of a label being edited.
  */
-public class EditLabelHandler {
+public class EditLabelHandler extends Handler{
 	
 	/**
 	 * Handle a label being edited.
@@ -111,12 +119,19 @@ public class EditLabelHandler {
 		}
 	}
 	
-	static public boolean isCorrectPartyLabel(String label){
+	static private boolean isCorrectPartyLabel(String label){
 		if(label.matches("([a-z][a-zA-Z]*)?:[A-Z][a-zA-Z]*\\|")){
 			return true;
 		}
 		return false;
 	}
+	
+	/**
+	 * Checks whether a canvas is the label editing mode of a party or not.
+	 * 
+	 * @param canvas 	The canvas to check.
+	 * @return			True if the canvas is in the label editing mode for a certain party.
+	 */
 	
 	static public boolean editLabelModeParty(Canvas  canvas) {
 		for(Party p : canvas.getParties()){
@@ -126,9 +141,17 @@ public class EditLabelHandler {
 		}
 		return false;
 	}
+	
+	/**
+	 * Checks whether a canvas is the label editing mode of a message or not.
+	 * 
+	 * @param canvas 	The canvas to check.
+	 * @return			True if the canvas is in the label editing mode for a certain message.
+	 */
+		
 	static public boolean editLabelModeMessage(Canvas canvas) {
 		for( Message m : canvas.getMessages()) {
-			if( m.getClass() == Model.InvocationMessage.class && m.getLabel().getSelected()) {
+			if( m.getClass() == InvocationMessage.class && m.getLabel().getSelected()) {
 				return true;
 			}
 		}

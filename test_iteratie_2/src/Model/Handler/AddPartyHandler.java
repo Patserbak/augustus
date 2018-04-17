@@ -1,9 +1,15 @@
-package Model;
+package Model.Handler;
+
+import Model.ADJUSTED_TYPE;
+import Model.Canvas;
+import Model.Label;
+import Model.Object;
+import Model.Point;
 
 /**
  * A handler that handles the actions of a party being added.
  */
-public class AddPartyHandler {
+public class AddPartyHandler extends Handler{
 	
 	/**
 	 * Handles a party being added to the canvas.
@@ -24,7 +30,7 @@ public class AddPartyHandler {
 		Label label = new Label(defaultName);
 		label.setSelected(true);
 		
-//		EditLabelHandler.handle(canvas, label, x, y);
+		// EditLabelHandler.handle(canvas, label, x, y);
 		
 		label.setLabelPositionSeq(new Point(x, seqYLabel));
 		

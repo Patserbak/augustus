@@ -7,10 +7,12 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Random;
 
+import Model.Actor;
 import Model.Canvas;
+import Model.InvocationMessage;
 import Model.Message;
 import Model.Party;
-import Model.titleBar;
+import Model.Canvas.*;
 
 /**
  * 
@@ -83,7 +85,7 @@ public class CommunicationDiagram extends View {
 		LinkedList<Message> sortedListOfMessage = Canvas.messageSort(new LinkedList<Message>(messages));
 		for( Message m : sortedListOfMessage) {
 			
-			if(m.getClass() == Model.InvocationMessage.class){
+			if(m.getClass() == InvocationMessage.class){
 
 				//Handle messageNumber in case of invocation
 				updateMessageNumber(m.getSentBy(), parties, messageNumber);
@@ -227,7 +229,7 @@ public class CommunicationDiagram extends View {
 		if(p.getSelected()){
 			graph.setColor(Color.RED);
 		}
-		if( p.getClass() == Model.Actor.class ) {
+		if( p.getClass() == Actor.class ) {
 			// Draw Actor as skelet 
 
 			graph.drawArc(p.getPosComm().getX(), p.getPosComm().getY(), 10, 10, 0, 360);

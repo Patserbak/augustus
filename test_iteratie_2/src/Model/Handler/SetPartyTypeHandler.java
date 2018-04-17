@@ -1,4 +1,11 @@
-package Model;
+package Model.Handler;
+
+import Model.ADJUSTED_TYPE;
+import Model.Actor;
+import Model.Canvas;
+import Model.Message;
+import Model.Object;
+import Model.Party;
 
 /**
  * A handler that handles the actions of a party changing its type.
@@ -17,10 +24,10 @@ public class SetPartyTypeHandler extends Handler {
 		if(changingParty==null) {return;}
 		 
 		Party partyToAdd;
-		if( Model.Object.class == changingParty.getClass() ) {	
-			partyToAdd = new Model.Actor(changingParty.getClassName(),changingParty.getPartyNumber());
+		if( Object.class == changingParty.getClass() ) {	
+			partyToAdd = new Actor(changingParty.getClassName(),changingParty.getPartyNumber());
 		} else {
-			partyToAdd =  new Model.Object(changingParty.getClassName(),changingParty.getPartyNumber());
+			partyToAdd =  new Object(changingParty.getClassName(),changingParty.getPartyNumber());
 		}
 		
 		partyToAdd.setLabel(changingParty.getLabel());

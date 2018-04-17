@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import Model.Handler.AddMessageHandler;
+
 /**
  * 
  * A system of parties and messages and their connection between them 

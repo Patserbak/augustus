@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import Model.Actor;
 import Model.Canvas;
+import Model.InvocationMessage;
 import Model.Label;
 import Model.Message;
 import Model.Party;
 import Model.ResultMessage;
 import Model.titleBar;
+import Model.Object;
 
 /**
  * 
@@ -61,9 +64,9 @@ public class SequenceDiagram extends View {
 			drawnParties.add(new DrawnParty(a.getPosSeq().getX(), a));
 			if (a.getSelected())
 				g.setColor(Color.RED);
-			if (a.getClass() == Model.Actor.class) {
+			if (a.getClass() == Actor.class) {
 				drawStickFigure(g, c, a.getPosSeq().getX(), a.getPosSeq().getY()+10);
-			} else if (a.getClass() == Model.Object.class) {
+			} else if (a.getClass() == Object.class) {
 				//g.drawRect(a.getPosSeq().getX()-a.getWidth()/2, a.getPosSeq().getY()-a.getHeight()/2, a.getWidth(), a.getHeight());
 			}
 			g.drawRect(a.getLabel().getLabelPositionSequence().getX() - a.getLabel().getWidth()/2, a.getLabel().getLabelPositionSequence().getY() - a.getLabel().getHeight()/2, a.getLabel().getWidth(), a.getLabel().getHeight());
@@ -85,14 +88,14 @@ public class SequenceDiagram extends View {
 		
 		//Draw activation bars on lifelines.
 		for (Message m : sortedMessages) {
-			if (m.getClass() == Model.InvocationMessage.class) {
+			if (m.getClass() == InvocationMessage.class) {
 				Message result = m.getResult();
 				if (result == null) {
 					System.out.println("Drawing error: Invocation message does not have equivalent result message.");
 				} else {
 					drawActivationBar(g, c, m.getReicevedBy(), c.getOrigineY() + c.getHeight()/6+(getAmountPredecessors(m)*50 + 50), c.getOrigineY() + c.getHeight()/6+(getAmountPredecessors(result)*50)+50);
 				}
-			} else if (m.getClass() == Model.ResultMessage.class) {}
+			} else if (m.getClass() == ResultMessage.class) {}
 		}
 		
 	}
@@ -119,7 +122,7 @@ public class SequenceDiagram extends View {
 			senderX = sender.getX()-3;
 			receiverX = receiver.getX()+3;
 		}
-		if (message.getClass() == Model.InvocationMessage.class)
+		if (message.getClass() == InvocationMessage.class)
 			drawArrow(g, senderX, y, receiverX, y);
 		else
 			drawDashedArrow(g, senderX, y, receiverX, y);

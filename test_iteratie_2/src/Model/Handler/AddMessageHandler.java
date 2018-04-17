@@ -1,7 +1,16 @@
-package Model;
+package Model.Handler;
 
 import java.util.LinkedList;
 import java.util.Stack;
+
+import Model.ADJUSTED_TYPE;
+import Model.Canvas;
+import Model.InvocationMessage;
+import Model.Label;
+import Model.Message;
+import Model.Party;
+import Model.Point;
+import Model.ResultMessage;
 
 /**
  * A handler handles the actions of a message being added to the canvas.
@@ -30,20 +39,12 @@ public class AddMessageHandler extends Handler {
 			if(p.getRole()=="sender") {sender = p;}
 		}
 		
-		if(sender==null) {System.out.println("Sender is NULL");}
-		else {System.out.println("Sender is Instantiated");}
-		
-		if(receiver==null) {System.out.println("Receiver is NULL");}
-		else {System.out.println("Receiver is Instantiated");}
-		
-		
 		if(sender==null || receiver==null) {return;}
 		
 		// Check if the sending party is allowed as sender
 		if(!messageAllowed(canvas, sender,receiver)) {
 			// Reset roles
 			resetRoles(canvas);
-			System.out.println("########## Message not allowed ##########");
 			return;
 		} else {
 						
@@ -87,7 +88,7 @@ public class AddMessageHandler extends Handler {
 			
 			// First all the orders needs to be updated because of the number of predecessors
 			for (Message m : canvas.getMessages()) {
-				if( m.getClass()==Model.InvocationMessage.class) {
+				if( m.getClass()== InvocationMessage.class) {
 					m.getLabel().setLabelPositionSeq(m.getLabel().getLabelPositionSequence().getX(),canvas.getOrigineY() + canvas.getHeight()/6 + 42 + (50 * getAmountPredecessors(canvas, m)));
 				}
 			}
@@ -102,11 +103,6 @@ public class AddMessageHandler extends Handler {
 		return;
 			
 	}
-	
-	private static boolean approxLifeLine(Party p, int x) {
-		return (p.getPosSeq().xCoordinate-30)<x &&
-				(p.getPosSeq().xCoordinate+30)>x;
-	}
 
 	private static int getMaxOrder(Canvas canvas) {
 		int max = 0;
@@ -115,12 +111,6 @@ public class AddMessageHandler extends Handler {
 		}
 		return max;
 		
-	}
-	
-	private static void resetRoles(Canvas canvas) {
-		for(Party p : canvas.getParties()) {
-			p.makeNone();
-		}
 	}
 	
 	/**
@@ -138,6 +128,7 @@ public class AddMessageHandler extends Handler {
 		}
 		return amount;
 	}
+	
 	private static boolean messageAllowed(Canvas canvas,Party sender, Party receiver) {
 		int firstClick = sender.getSelectedYPosition();
 		int secondClick = receiver.getSelectedYPosition();
@@ -184,9 +175,9 @@ public class AddMessageHandler extends Handler {
 			Party belowTop = stackParties.pop();
 
 		if( topStack ==  sender ) {
-			if (belowTop == receiver && lastMessage != null && lastMessage.getClass().equals(Model.InvocationMessage.class)) {
+			if (belowTop == receiver && lastMessage != null && lastMessage.getClass().equals(InvocationMessage.class)) {
 				return false;
-			} else if ( lastMessagePlusOne != null &&lastMessagePlusOne.getReicevedBy() == receiver && lastMessagePlusOne.getClass() == Model.ResultMessage.class) {
+			} else if ( lastMessagePlusOne != null &&lastMessagePlusOne.getReicevedBy() == receiver && lastMessagePlusOne.getClass() == ResultMessage.class) {
 				return false;
 			} else {
 				return true;
@@ -197,6 +188,7 @@ public class AddMessageHandler extends Handler {
 		}
 		return false;
 	}
+	
 	//update order of the messages => all messages who have a higher order than the received message get a order of +2 
 	private static void updateOrderMessages(Canvas canvas, Message message) {
 		for (Message m  : canvas.getMessages()) {
@@ -205,6 +197,7 @@ public class AddMessageHandler extends Handler {
 			}
 		}
 	}
+	
 	// find the 2 messages where the Invocation and ResultMessage must be placed in between => Returns the first Message(lowest order)
 	private static Message findMessage(Canvas canvas, Party sender, Party receiver) {
 		LinkedList<Message> messages = new LinkedList<Message>();

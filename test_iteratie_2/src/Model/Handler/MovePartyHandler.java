@@ -1,4 +1,9 @@
-package Model;
+package Model.Handler;
+
+import Model.Canvas;
+import Model.Message;
+import Model.Party;
+import Model.Point;
 
 /**
  * A handler that handles the actions of a party being moved.
@@ -7,16 +12,7 @@ public class MovePartyHandler extends Handler {
 	
 	/* 
 	 * Selected Party's coordinates are replaced by
-	 * provided mouse coordinates. 
-	 * 
-	 * Assuming that the move operation consists of
-	 * the selecting (MOUSE_CLICK) and [moving (MOUSE_DRAGGED)]*
-	 * of the party.
-	 * 
-	 * ?and end the operation (MOUSE_RELEASE)?
-	 * 
-	 * Assuming only one party is ever selected.
-	 * 
+	 * provided mouse coordinates.
 	 */ 
 	
 	/**

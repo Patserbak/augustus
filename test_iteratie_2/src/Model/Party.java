@@ -41,10 +41,10 @@ public abstract class Party {
 	@Override
 	public Party clone() {
 		Party returnParty = null;
-		if( Model.Object.class == this.getClass()) {
-			returnParty = new Model.Object( this.getClassName(),this.partyNumber);
-		} else if (Model.Actor.class == this.getClass()){
-			returnParty = new Model.Actor( this.getClassName(),this.partyNumber);
+		if( Object.class == this.getClass()) {
+			returnParty = new Object( this.getClassName(),this.partyNumber);
+		} else if (Actor.class == this.getClass()){
+			returnParty = new Actor( this.getClassName(),this.partyNumber);
 
 		} else {
 			return null;

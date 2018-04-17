@@ -6,6 +6,10 @@ import java.util.Random;
 import java.util.Stack;
 
 import Controller.Mouse;
+import Model.Handler.AddInteractionHandler;
+import Model.Handler.AddWindowHandler;
+import Model.Handler.CloseWindowHandler;
+import Model.Handler.EditLabelHandler;
 
 public class Screen {
 	
@@ -17,15 +21,8 @@ public class Screen {
 	
 	private boolean ctrlPressed =  false;
 	
-	private Random randNumberPos = new Random();
-
-
 	public ArrayList<Interaction> getInteractions() {
 		return this.interactions;
-	}
-	
-	public void addInteraction(Interaction i) {
-		interactions.add(i);
 	}
 	
 	public void removeInteraction(Interaction i) {
@@ -62,16 +59,8 @@ public class Screen {
 			}
 		}
 		
-		// Find any canvas objects that need to be closed/deleted!
-		ArrayList<Canvas> toBeDeleted = new ArrayList<Canvas>();
-		for( Canvas c :subWindows) {
-			if(c.getMode()  == Mode.CLOSING) {
-				toBeDeleted.add(c);
-			}
-		}
-		for (Canvas c : toBeDeleted) {
-			subWindows.remove(c);
-		}
+		CloseWindowHandler.handle(subWindows);
+		
 		// Find any Empty Interaction(empty interaction =  canvas left) ==> delete empty Interaction
 		ArrayList<Interaction> toBeDeletedInteraction = new ArrayList<Interaction>();
 		for( Interaction i :interactions) {
@@ -99,48 +88,12 @@ public class Screen {
 	
 	public void keyPressed(int id, int keyCode, char keyChar) {
 
-		if( ctrlPressed && keyCode == 68 && (id == KeyEvent.KEY_PRESSED || id == KeyEvent.KEY_TYPED)) {
-			// New interaction
-			System.out.println("############ New Interaction Made ######################");
-			Interaction i = new Interaction();
-			addInteraction(i);
-			for( Canvas c : i.getSubWindows()) {
-				subWindows.push(c);
-			}
-		}else if ( !interactions.isEmpty() && ctrlPressed && keyCode == 78 && (id == KeyEvent.KEY_PRESSED || id == KeyEvent.KEY_TYPED) ) {
-			// Add new Subwindow to current Interaction
-			Interaction i = subWindows.lastElement().getInteraction();
-			int xOrigineRandom = randNumberPos.nextInt(250);
-			int yOrigineRandom = randNumberPos.nextInt(250);
-			Canvas c = new Canvas(subWindows.lastElement().getWidth(),subWindows.lastElement().getHeight(),xOrigineRandom,yOrigineRandom,i);
+		if( ctrlPressed && keyCode == 78 && (id == KeyEvent.KEY_PRESSED || id == KeyEvent.KEY_TYPED)) {
+			AddInteractionHandler.handle(interactions, subWindows);
+		
+		}else if ( !interactions.isEmpty() && ctrlPressed && keyCode == 68 && (id == KeyEvent.KEY_PRESSED || id == KeyEvent.KEY_TYPED) ) {
+			AddWindowHandler.handle(subWindows);
 			
-			// Clone Parties 
-			for ( Party p : subWindows.lastElement().getParties()) {
-				Party partyToAdd = (Party) p.clone();
-				c.addParty(partyToAdd);
-			}
-			
-			int oldXorigine = subWindows.lastElement().getOrigineX();
-			int oldYorigine = subWindows.lastElement().getOrigineY();
-			int newXorigine = c.getOrigineX();
-			int newYorigine = c.getOrigineY();
-			SelectElementHandler.updatePartyPositions(c , oldXorigine, oldYorigine, newXorigine, newYorigine);
-			
-			Interaction.copyMessages(subWindows.lastElement(), c);
-			/**
-			// Clone Messages
-			for( Message m : subWindows.lastElement().getMessages()) {
-				Message messageToAdd = (Message) m.clone();
-				c.addMessage(messageToAdd);
-			}
-			SelectElementHandler.updateMessagePositions(c , oldXorigine, oldYorigine, newXorigine, newYorigine);
-			for( Message m : c.getMessages()) {
-				Interaction.updateMessagePropertiesAfterClone(subWindows.lastElement(),c, m);
-			}
-			*/
-			i.addCanvas(c);
-			subWindows.push(c);
-			System.out.println("############ New SubWindow Added #######################");
 		} else {
 			ctrlPressed = false;
 		}		

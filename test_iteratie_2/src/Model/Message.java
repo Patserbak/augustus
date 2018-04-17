@@ -31,9 +31,9 @@ public class Message {
 	@Override
 	public Message clone() {
 		Message returnMessage = null; 
-		if( this.getClass() == Model.ResultMessage.class) {
+		if( this.getClass() == ResultMessage.class) {
 			returnMessage = new ResultMessage(this.getLabel().getLabelname());
-		} else if( this.getClass() == Model.InvocationMessage.class)	{
+		} else if( this.getClass() == InvocationMessage.class)	{
 			returnMessage = new InvocationMessage(this.getLabel().getLabelname(),this.getResult());
 		} else {
 			return null;
