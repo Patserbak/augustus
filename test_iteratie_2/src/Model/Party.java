@@ -14,11 +14,9 @@ public abstract class Party {
 	private Label label;
 	private int height = 30;
 	private int width = 70;
-	private boolean lifeLineSelected = false;
-	private String role = "none";
+	private PartyRole role = PartyRole.NONE;
 	private Random randNumberPos;
 	private  int partyNumber;
-	
 	private int selectedYPosition;
 
 	
@@ -26,7 +24,7 @@ public abstract class Party {
 	 * Constructor for a party
 	 * @param cName		The new party's name.
 	 */
-	public Party (String cName,int partyNumber){
+	protected Party (String cName,int partyNumber){
 		this.className = cName;
 
 		randNumberPos = new Random();
@@ -182,7 +180,7 @@ public abstract class Party {
 	 * Returns the role of this party (sender, receiver or neither)
 	 * @return		This party's role.
 	 */
-	public String getRole() {
+	public PartyRole getRole() {
 		return role;
 	}
 	
@@ -190,37 +188,45 @@ public abstract class Party {
 	 * Make this party the message sender.
 	 */
 	public void makeSender() {
-		role = "sender";
+		role = PartyRole.SENDER;
 	}
 	
 	/**
 	 * Make this party the message receiver.
 	 */
 	public void makeReceiver() {
-		role = "receiver";
+		role = PartyRole.RECEIVER;
 	}
 	
 	/**
 	 * Make this party neither the message sender or the message receiver.
 	 */
 	public void makeNone() {
-		role = "none";
+		role = PartyRole.NONE;
 	}
 
+	/**
+	 * Returns the selected Y position.
+	 * @return 		Selected Y position.
+	 */
 	public int getSelectedYPosition() {
 		return selectedYPosition;
 	}
 
+	/**
+	 * Sets the selected Y position to a given value.
+	 * @param selectedYPosition 	The value to which selected Y position should be set.
+	 */
 	public void setSelectedYPosition(int selectedYPosition) {
 		this.selectedYPosition = selectedYPosition;
 	}
 
+	/**
+	 * Returns this Party's number.
+	 * @return	The number of this party.
+	 */
 	public int getPartyNumber() {
 		return partyNumber;
-	}
-
-	public void setPartyNumber(int partyNumber) {
-		this.partyNumber = partyNumber;
 	}
 	
 }

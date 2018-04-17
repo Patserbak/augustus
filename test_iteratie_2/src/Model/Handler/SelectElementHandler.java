@@ -6,6 +6,7 @@ import Model.Label;
 import Model.Message;
 import Model.Mode;
 import Model.Party;
+import Model.PartyRole;
 import Model.ResultMessage;
 import Model.Window;
 import Model.titleBar;
@@ -140,7 +141,7 @@ public class SelectElementHandler extends Handler {
 	private static boolean existsSender(Canvas canvas) {
 		
 		for(Party p : canvas.getParties()) {
-			if(p.getRole()=="sender") {return true;}
+			if(p.getRole()==PartyRole.SENDER) {return true;}
 		}
 		
 		return false;

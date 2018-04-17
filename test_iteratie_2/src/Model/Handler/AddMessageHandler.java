@@ -9,6 +9,7 @@ import Model.InvocationMessage;
 import Model.Label;
 import Model.Message;
 import Model.Party;
+import Model.PartyRole;
 import Model.Point;
 import Model.ResultMessage;
 
@@ -36,7 +37,7 @@ public class AddMessageHandler extends Handler {
 		}
 		// Determine sender
 		for(Party p : canvas.getParties()) {
-			if(p.getRole()=="sender") {sender = p;}
+			if(p.getRole()==PartyRole.SENDER) {sender = p;}
 		}
 		
 		if(sender==null || receiver==null) {return;}
