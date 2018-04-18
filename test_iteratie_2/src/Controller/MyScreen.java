@@ -96,8 +96,8 @@ public class MyScreen {
 		int xLow = lastElement.getOrigineX() - 4 ;
 		int yLow = lastElement.getOrigineY() - 4;
 		// "+4" is for resize -> canvas.resize methods
-		int xHigh = xLow + lastElement.getWidth() + 4 ;
-		int yHigh = yLow + lastElement.getHeight() + 4;
+		int xHigh = xLow + lastElement.getWidth() + 8 ;
+		int yHigh = yLow + lastElement.getHeight() + 8;
 		
 		if( x >= xLow && x <= xHigh && y >= yLow && y <= yHigh) {
 			return true;
