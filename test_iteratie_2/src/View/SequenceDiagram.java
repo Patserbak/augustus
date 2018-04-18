@@ -93,6 +93,7 @@ public class SequenceDiagram extends View {
 				if (result == null) {
 					System.out.println("Drawing error: Invocation message does not have equivalent result message.");
 				} else {
+					drawActivationBar(g, c, m.getSentBy(), c.getOrigineY() + c.getHeight()/6+(getAmountPredecessors(m)*50 + 50),  c.getOrigineY() + c.getHeight()/6+(getAmountPredecessors(result)*50)+50);
 					drawActivationBar(g, c, m.getReicevedBy(), c.getOrigineY() + c.getHeight()/6+(getAmountPredecessors(m)*50 + 50), c.getOrigineY() + c.getHeight()/6+(getAmountPredecessors(result)*50)+50);
 				}
 			} else if (m.getClass() == ResultMessage.class) {}
@@ -182,7 +183,7 @@ public class SequenceDiagram extends View {
 	private void drawActivationBar(Graphics g, Canvas c, Party p, int y1, int y2) {
 		int rectangleWidth = 6;
 		int outward = 3;
-		g.drawRect(p.getPosSeq().getX()-(rectangleWidth/2), y1-outward, rectangleWidth, (y2-y1)+(2*outward));
+		g.fillRect(p.getPosSeq().getX()-(rectangleWidth/2), y1-outward, rectangleWidth, (y2-y1)+(2*outward));
 	}
 	
 	private class DrawnParty {
