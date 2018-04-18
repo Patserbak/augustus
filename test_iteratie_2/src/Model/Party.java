@@ -51,6 +51,7 @@ public abstract class Party {
 		returnParty.setPosSeq(this.getPosSeq().getX(), this.getPosSeq().getY());
 		
 		Label label = new Label(this.getLabel().getLabelname());
+		label.setWidth(this.getLabel().getWidth());
 		label.setLabelPositionSeq(this.getPosSeq().getX(), this.getPosSeq().getY() + this.getHeight() + 10);
 		label.setLabelPositionComm(this.getPosComm().getX(), this.getPosComm().getY());
 		returnParty.setLabel(label);

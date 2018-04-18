@@ -69,7 +69,7 @@ public class SelectElementHandler extends Handler {
 			
 			if(p == null && l == null) {deselectAll(canvas);}
 			
-			if(l!=null) {l.setSelected(true);}
+			if(l!=null) {l.setSelected(true); return;}
 			if(p!=null) {p.setSelected(true);}
 		}
 		

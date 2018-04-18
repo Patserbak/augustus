@@ -110,6 +110,9 @@ public class Interaction {
 				// Get updated Label name from "updatedCanvas"
 				String newLabelName = Canvas.findPartyByNumber(updatedCanvas, p.getPartyNumber()).getLabel().getLabelname();
 				p.getLabel().setLabelname(newLabelName);
+				p.getLabel().setLabelname(newLabelName);
+				String name = p.getLabel().getLabelname();
+				p.getLabel().setWidth(8*name.length());
 			}
 		}
 	}
@@ -173,6 +176,8 @@ public class Interaction {
 				// Get updated Label name from "updatedCanvas"
 				String newLabelName = Canvas.findMessageByNumber(updatedCanvas, p.getMessageNumber()).getLabel().getLabelname();
 				p.getLabel().setLabelname(newLabelName);
+				String name = p.getLabel().getLabelname();
+				p.getLabel().setWidth(8*name.length());
 			}
 		}
 	}
