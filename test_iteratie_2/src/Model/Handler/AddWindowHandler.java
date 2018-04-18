@@ -13,7 +13,8 @@ import Model.Party;
 
 public class AddWindowHandler extends Handler{
 	
-	private static Random randNumberPos = new Random();
+	// private static Random randNumberPos = new Random();
+	private static final int c = 10;
 	
 	/**
 	 * Pushes a cloned version of the top window of the provided stack onto that stack.
@@ -25,9 +26,12 @@ public class AddWindowHandler extends Handler{
 
 		// Add new Subwindow to current Interaction
 		Interaction i = subWindows.lastElement().getInteraction();
-		int xOrigineRandom = randNumberPos.nextInt(250);
-		int yOrigineRandom = randNumberPos.nextInt(250);
-		Canvas c = new Canvas(subWindows.lastElement().getWidth(),subWindows.lastElement().getHeight(),xOrigineRandom,yOrigineRandom,i);
+		//int xOrigineRandom = randNumberPos.nextInt(250);
+		//int yOrigineRandom = randNumberPos.nextInt(250);
+		
+		int origin = c*subWindows.size();
+		
+		Canvas c = new Canvas(subWindows.lastElement().getWidth(),subWindows.lastElement().getHeight(),origin,origin,i);
 		
 		// Clone Parties 
 		for ( Party p : subWindows.lastElement().getParties()) {

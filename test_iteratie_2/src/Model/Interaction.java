@@ -6,17 +6,17 @@ import Model.Handler.ResizeWindowHandler;
 
 public class Interaction {
 	
-	public Interaction() {
+	public Interaction(int i) {
 		subWindows = new ArrayList<Canvas>();
+		//int xOrigineRandom = randNumberPos.nextInt(250);
+		//int yOrigineRandom = randNumberPos.nextInt(250);
 		
-		int xOrigineRandom = randNumberPos.nextInt(250);
-		int yOrigineRandom = randNumberPos.nextInt(250);
-		Canvas c = new Canvas(300, 300, xOrigineRandom,yOrigineRandom,this );
+		Canvas c = new Canvas(300, 300, i, i,this );
 		subWindows.add(c);
 	}
 
 	private ArrayList<Canvas> subWindows = new ArrayList<Canvas>();
-	private Random randNumberPos = new Random();
+	//private Random randNumberPos = new Random();
 
 	public ArrayList<Canvas> getSubWindows(){
 		return subWindows;
