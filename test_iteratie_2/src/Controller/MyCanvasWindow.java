@@ -1,31 +1,15 @@
 package Controller;
 
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.LinkedList;
+
 
 import Controller.Mouse;
 import Model.Canvas;
-import Model.Message;
-import Model.Mode;
-import Model.Party;
-import Model.ResultMessage;
 import Model.Screen;
-import Model.Handler.AddMessageHandler;
-import Model.Handler.AddPartyHandler;
-import Model.Handler.DeleteElementHandler;
 import Model.Handler.EditLabelHandler;
-import Model.Handler.Handler;
-import Model.Handler.MovePartyHandler;
-import Model.Handler.SelectElementHandler;
-import Model.Handler.SetPartyTypeHandler;
-import Model.Handler.SwitchViewHandler;
 import View.CommunicationDiagram;
 import View.SequenceDiagram;
 import View.View;
@@ -43,6 +27,7 @@ public class MyCanvasWindow extends CanvasWindow{
 	
 	private Canvas canvas;
 	private Screen screen = Screen.getInstance();
+	private MyScreen myScreen = MyScreen.getInstance();
 	
 	/**
 	 * The constructor for MyCanvasWindow.
@@ -104,17 +89,17 @@ public class MyCanvasWindow extends CanvasWindow{
 				switch(id) {
 					
 				case MouseEvent.MOUSE_CLICKED: 
-					if(clickCount == 1) {screen.mouseClicked(Mouse.SINGLECLICK, x, y);}
-					if(clickCount == 2) {screen.mouseClicked(Mouse.DOUBLECLICK, x, y);}
+					if(clickCount == 1) {myScreen.mouseClicked(Mouse.SINGLECLICK, x, y, screen);}
+					if(clickCount == 2) {myScreen.mouseClicked(Mouse.DOUBLECLICK, x, y, screen);}
 					break;
 				case MouseEvent.MOUSE_PRESSED:
-					screen.mouseClicked(Mouse.PRESSED, x, y);
+					myScreen.mouseClicked(Mouse.PRESSED, x, y, screen);
 					break;
 				case MouseEvent.MOUSE_DRAGGED:
-					screen.mouseClicked(Mouse.DRAGGED, x, y);
+					myScreen.mouseClicked(Mouse.DRAGGED, x, y, screen);
 					break;
 				case MouseEvent.MOUSE_RELEASED:
-					screen.mouseClicked(Mouse.RELEASED, x, y);
+					myScreen.mouseClicked(Mouse.RELEASED, x, y, screen);
 					break;
 				}
 			}
@@ -133,7 +118,7 @@ public class MyCanvasWindow extends CanvasWindow{
 	
 	@Override
 	protected void handleKeyEvent(int id, int keyCode, char keyChar){
-		screen.keyPressed(id, keyCode, keyChar);
+		myScreen.keyPressed(id, keyCode, keyChar, screen);
 		repaint();
 	}
 	
