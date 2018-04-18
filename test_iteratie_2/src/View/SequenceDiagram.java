@@ -38,7 +38,7 @@ public class SequenceDiagram extends View {
 	@Override
 	public void draw(Canvas c, Graphics g) {
 		
-		// Update message Positions
+		// Update message Positions -------------> nog te verbeteren!!!!!!!!!!!!
 		MoveWindowHandler.updateMessagePositions(c, c.getOrigineX(), c.getOrigineY(), c.getOrigineX(), c.getOrigineY());
 		//
 		
