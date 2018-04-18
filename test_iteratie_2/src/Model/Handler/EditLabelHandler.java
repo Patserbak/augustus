@@ -112,6 +112,8 @@ public class EditLabelHandler extends Handler{
 		case "BACKSPACE":
 			name = name.substring(0, name.length()-1);
 			label.setLabelname(name + '|');
+			if (isCorrectPartyLabel(label.getLabelname())) 
+				canvas.getInteraction().adjusted(ADJUSTED_TYPE.PARTY_LABEL,canvas);
 			break;
 		case "ENTER":
 			label.setLabelname(name);
