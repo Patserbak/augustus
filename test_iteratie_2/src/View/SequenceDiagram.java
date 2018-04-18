@@ -15,6 +15,7 @@ import Model.Message;
 import Model.Party;
 import Model.ResultMessage;
 import Model.titleBar;
+import Model.Handler.MoveWindowHandler;
 import Model.Object;
 
 /**
@@ -36,6 +37,10 @@ public class SequenceDiagram extends View {
 	 */
 	@Override
 	public void draw(Canvas c, Graphics g) {
+		
+		// Update message Positions
+		MoveWindowHandler.updateMessagePositions(c, c.getOrigineX(), c.getOrigineY(), c.getOrigineX(), c.getOrigineY());
+		//
 		
 		
 		/* Iteration 2 ------------------------------

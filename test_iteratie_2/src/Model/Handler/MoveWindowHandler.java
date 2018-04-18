@@ -90,7 +90,7 @@ public class MoveWindowHandler extends Handler {
 			
 			int dx = Math.abs((xSeq-oldXorigine));
 			
-			m.getLabel().setLabelPositionSeq((newXorigine+dx),canvas.getOrigineY() +canvas.getHeight()/6 + 42 + (50 * AddMessageHandler.getAmountPredecessors(canvas, m)));
+			//m.getLabel().setLabelPositionSeq((newXorigine+dx),canvas.getOrigineY() +canvas.getHeight()/6 + 42 + (50 * AddMessageHandler.getAmountPredecessors(canvas, m)));
 			// Update Label Positions Communication Diagram
 			int xCom = m.getLabel().getLabelPositionComm().getX();
 			int yCom = m.getLabel().getLabelPositionComm().getY();
