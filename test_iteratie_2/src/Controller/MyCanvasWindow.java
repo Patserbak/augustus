@@ -134,7 +134,7 @@ public class MyCanvasWindow extends CanvasWindow{
 //	    String pathPrefix =
 //		 "C:\\Users\\robbe\\git\\test_iteration_2\\test_iteratie_2\\src\\tests\\recordings\\";
 //		 String newFile = 
-//		 "addWindow\\ctrlN";
+//		 "deleteElement\\deletePartyCom";
 //	     String filePath = pathPrefix + newFile;
 	     MyCanvasWindow myCanvas = new MyCanvasWindow("My Canvas Window");
 //		 myCanvas.recordSession(filePath);

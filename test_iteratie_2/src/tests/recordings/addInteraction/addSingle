@@ -1,0 +1,82 @@
+Paint
+KeyEvent KEY_PRESSED 17 65535
+Paint
+KeyEvent KEY_PRESSED 78 14
+KeyEvent KEY_TYPED 0 14
+Paint
+KeyEvent KEY_PRESSED 17 65535
+Paint
+KeyEvent KEY_PRESSED 17 65535
+Paint
+KeyEvent KEY_PRESSED 84 20
+KeyEvent KEY_TYPED 0 20
+Paint
+MouseEvent MOUSE_PRESSED 147 14 1
+Paint
+MouseEvent MOUSE_DRAGGED 149 14 0
+Paint
+MouseEvent MOUSE_DRAGGED 154 21 0
+Paint
+MouseEvent MOUSE_DRAGGED 157 26 0
+Paint
+MouseEvent MOUSE_DRAGGED 159 28 0
+Paint
+MouseEvent MOUSE_DRAGGED 160 31 0
+Paint
+MouseEvent MOUSE_DRAGGED 162 33 0
+Paint
+MouseEvent MOUSE_DRAGGED 164 36 0
+Paint
+MouseEvent MOUSE_DRAGGED 164 37 0
+Paint
+MouseEvent MOUSE_DRAGGED 165 39 0
+Paint
+MouseEvent MOUSE_DRAGGED 167 41 0
+Paint
+MouseEvent MOUSE_DRAGGED 168 42 0
+Paint
+MouseEvent MOUSE_DRAGGED 169 43 0
+Paint
+MouseEvent MOUSE_DRAGGED 170 45 0
+Paint
+MouseEvent MOUSE_DRAGGED 172 46 0
+Paint
+MouseEvent MOUSE_DRAGGED 173 48 0
+Paint
+MouseEvent MOUSE_DRAGGED 175 49 0
+Paint
+MouseEvent MOUSE_DRAGGED 176 50 0
+Paint
+MouseEvent MOUSE_DRAGGED 178 52 0
+Paint
+MouseEvent MOUSE_DRAGGED 180 55 0
+Paint
+MouseEvent MOUSE_DRAGGED 182 57 0
+Paint
+MouseEvent MOUSE_DRAGGED 184 59 0
+Paint
+MouseEvent MOUSE_DRAGGED 185 61 0
+Paint
+MouseEvent MOUSE_DRAGGED 186 64 0
+Paint
+MouseEvent MOUSE_DRAGGED 191 68 0
+Paint
+MouseEvent MOUSE_DRAGGED 191 69 0
+Paint
+MouseEvent MOUSE_DRAGGED 192 69 0
+Paint
+MouseEvent MOUSE_DRAGGED 193 69 0
+Paint
+MouseEvent MOUSE_DRAGGED 193 70 0
+Paint
+MouseEvent MOUSE_DRAGGED 194 70 0
+Paint
+MouseEvent MOUSE_DRAGGED 195 70 0
+Paint
+MouseEvent MOUSE_RELEASED 195 70 1
+Paint
+KeyEvent KEY_PRESSED 17 65535
+Paint
+KeyEvent KEY_PRESSED 68 4
+KeyEvent KEY_TYPED 0 4
+Paint
