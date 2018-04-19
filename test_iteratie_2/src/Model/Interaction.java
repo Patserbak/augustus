@@ -1,108 +1,27 @@
 package Model;
-
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
-
-import Controller.Mouse;
-import Model.Handler.AddMessageHandler;
-import Model.Handler.AddPartyHandler;
-import Model.Handler.CloseWindowHandler;
-import Model.Handler.DeleteElementHandler;
-import Model.Handler.EditLabelHandler;
-import Model.Handler.Handler;
-import Model.Handler.MovePartyHandler;
 import Model.Handler.MoveWindowHandler;
 import Model.Handler.ResizeWindowHandler;
-import Model.Handler.SelectElementHandler;
-import Model.Handler.SetPartyTypeHandler;
-import Model.Handler.SwitchViewHandler;
 
 public class Interaction {
 	
-	public Interaction() {
+	public Interaction(int i) {
 		subWindows = new ArrayList<Canvas>();
+		//int xOrigineRandom = randNumberPos.nextInt(250);
+		//int yOrigineRandom = randNumberPos.nextInt(250);
 		
-		int xOrigineRandom = randNumberPos.nextInt(250);
-		int yOrigineRandom = randNumberPos.nextInt(250);
-		Canvas c = new Canvas(300, 300, xOrigineRandom,yOrigineRandom,this );
+		Canvas c = new Canvas(300, 300, i, i,this );
 		subWindows.add(c);
 	}
 
 	private ArrayList<Canvas> subWindows = new ArrayList<Canvas>();
-	private Random randNumberPos = new Random();
+	//private Random randNumberPos = new Random();
 
 	public ArrayList<Canvas> getSubWindows(){
 		return subWindows;
 	}
 	
-	void mouseClicked(Mouse id, int x, int y, Canvas canvas) {
-		
-		switch(id){
-		
-		case RELEASED:
-			if(canvas.getMode()==Mode.ADDMESSAGE) {System.out.println("######## Handling Message ########");AddMessageHandler.handle(canvas, x, y);}
-			if(canvas.getMode()==Mode.ADDMESSAGE || canvas.getMode()==Mode.MOVEPARTY) {SelectElementHandler.handle(canvas, x, y, Mouse.RELEASED);break;}
-		
-		case DRAGGED:
-			if(canvas.getMode()==Mode.MOVEPARTY) {MovePartyHandler.handle(canvas, x, y);break;}		
-		case PRESSED:
-			SelectElementHandler.handle(canvas, x, y, Mouse.PRESSED);break;	
-		
-		case SINGLECLICK:
-			SelectElementHandler.handle(canvas, x, y, Mouse.SINGLECLICK);break; 
-			
-		case DOUBLECLICK:
-				if(!EditLabelHandler.editLabelModeMessage(canvas)) {
-					if(Handler.getPartyAt(x, y, canvas)!=null){SetPartyTypeHandler.handle(canvas, x, y);break;}
-					else{AddPartyHandler.handle(canvas, x, y);break;}
-				}
-		}
-		
-		CloseWindowHandler.handle(subWindows);
-		
-	}
-
-	public void keyPressed(int id, int keyCode, char keyChar, Canvas canvas) {
-		
-		if(id == KeyEvent.KEY_PRESSED && !EditLabelHandler.editLabelModeParty(canvas)) {
-			switch(keyCode){
-			case KeyEvent.VK_TAB:
-				System.out.println("TAB");
-				SwitchViewHandler.handle(canvas);
-				break;
-			case KeyEvent.VK_ENTER:
-				System.out.println("ENTER");
-				break;
-
-			case KeyEvent.VK_DELETE:
-				System.out.println("DELETE");
-				DeleteElementHandler.handle(canvas);
-			default:
-				break;
-			}
-		} else if (id == KeyEvent.KEY_TYPED) {
-			for(Party p : canvas.getParties()){
-				if(p.getLabel().getSelected()) {
-					if(canvas.getView() == Canvas.View.SEQUENCE)
-						EditLabelHandler.handle(canvas, p.getLabel(), p, keyChar, p.getLabel().getLabelPositionSequence().getX(), p.getLabel().getLabelPositionSequence().getY());
-					else 
-						EditLabelHandler.handle(canvas, p.getLabel(), p, keyChar, p.getLabel().getLabelPositionComm().getX(), p.getLabel().getLabelPositionComm().getY());
-					break;
-				}
-			}
-			for(Message m : canvas.getMessages()){
-				if(m.getLabel().getSelected()) {
-					if(canvas.getView() == Canvas.View.SEQUENCE)
-						EditLabelHandler.handle(canvas, m.getLabel(), keyChar, m.getLabel().getLabelPositionSequence().getX(), m.getLabel().getLabelPositionSequence().getY());
-					else 
-						EditLabelHandler.handle(canvas, m.getLabel(), keyChar, m.getLabel().getLabelPositionComm().getX(), m.getLabel().getLabelPositionComm().getY());
-					break;
-				}
-			}
-		}
-	}
 	public void deleteCanvas(Canvas c) {
 		subWindows.remove(c);
 	}
@@ -191,6 +110,9 @@ public class Interaction {
 				// Get updated Label name from "updatedCanvas"
 				String newLabelName = Canvas.findPartyByNumber(updatedCanvas, p.getPartyNumber()).getLabel().getLabelname();
 				p.getLabel().setLabelname(newLabelName);
+				p.getLabel().setLabelname(newLabelName);
+				String name = p.getLabel().getLabelname();
+				p.getLabel().setWidth(8*name.length());
 			}
 		}
 	}

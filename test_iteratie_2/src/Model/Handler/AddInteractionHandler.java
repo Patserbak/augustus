@@ -22,7 +22,7 @@ public class AddInteractionHandler extends Handler{
 	
 	public static void handle(ArrayList<Interaction> interactions, Stack<Canvas> subWindows) {
 		// New interaction
-		Interaction i = new Interaction();
+		Interaction i = new Interaction(subWindows.size()*10);
 		interactions.add(i);
 		for( Canvas c : i.getSubWindows()) {
 			subWindows.push(c);
