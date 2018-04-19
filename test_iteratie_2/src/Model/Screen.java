@@ -5,7 +5,7 @@ import java.util.Stack;
 public class Screen {
 	
 	/////////////////// Singleton ///////////////////
-	private static Screen instance = null;
+	/*private static Screen instance = null;
 	
 	private Screen() {}
 	
@@ -16,7 +16,7 @@ public class Screen {
 	public static Screen getInstance() {
 		if(instance==null) {createInstance();}
 		return instance;
-	}
+	}*/
 
 	////////////////////////////////////////////////
 	

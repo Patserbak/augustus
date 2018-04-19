@@ -15,7 +15,7 @@ import Model.Handler.EditLabelHandler;
 public class MyScreen {
 
 	/////////////////// Singleton ///////////////////
-	private static MyScreen instance = null;
+	/*private static MyScreen instance = null;
 	
 	private MyScreen() {}
 	
@@ -26,7 +26,7 @@ public class MyScreen {
 	public static MyScreen getInstance() {
 	if(instance==null) {createInstance();}
 	return instance;
-	}
+	}*/
 	
 	////////////////////////////////////////////////
 	

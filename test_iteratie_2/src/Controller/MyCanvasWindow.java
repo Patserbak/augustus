@@ -26,8 +26,8 @@ public class MyCanvasWindow extends CanvasWindow{
 	
 	
 	private Canvas canvas;
-	private Screen screen = Screen.getInstance();
-	private MyScreen myScreen = MyScreen.getInstance();
+	private Screen screen = new Screen(); //Screen.getInstance();
+	private MyScreen myScreen = new MyScreen(); //MyScreen.getInstance();
 	
 	/**
 	 * The constructor for MyCanvasWindow.
@@ -64,7 +64,6 @@ public class MyCanvasWindow extends CanvasWindow{
 				v = new CommunicationDiagram();
 			v.draw(c, g);
 		}
-
 	}
 	
 	/**
@@ -134,7 +133,7 @@ public class MyCanvasWindow extends CanvasWindow{
 //	    String pathPrefix =
 //		 "C:\\Users\\robbe\\git\\test_iteration_2\\test_iteratie_2\\src\\tests\\recordings\\";
 //		 String newFile = 
-//		 "deleteElement\\deletePartyCom";
+//		 "switchView\\switchToSeq";
 //	     String filePath = pathPrefix + newFile;
 	     MyCanvasWindow myCanvas = new MyCanvasWindow("My Canvas Window");
 //		 myCanvas.recordSession(filePath);
