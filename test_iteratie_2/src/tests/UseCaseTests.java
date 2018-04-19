@@ -30,7 +30,7 @@ public class UseCaseTests {
 	
 	@Test
 	public void addWindowTest() {
-//		MyCanvasWindow.replayRecording("addWindow\\addWindow", canvasWindow);
+		MyCanvasWindow.replayRecording(path + "addWindow\\ctrlN", canvasWindow);
 	}
 	
 	@Test
