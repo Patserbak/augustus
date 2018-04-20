@@ -35,12 +35,13 @@ public class MyInteraction {
 	 */
 	public static void mouseClicked(Mouse id, int x, int y, Canvas canvas, Interaction interaction) {
 		
+		if(canvas.getMode()==Mode.ADDMESSAGE) {SelectElementHandler.deselectAll(canvas);}
+		
 		switch(id){
 		
 		case RELEASED:
 			if(canvas.getMode()==Mode.ADDMESSAGE) {System.out.println("######## Handling Message ########");AddMessageHandler.handle(canvas, x, y);}
 			if(canvas.getMode()==Mode.ADDMESSAGE || canvas.getMode()==Mode.MOVEPARTY) {SelectElementHandler.handle(canvas, x, y, Mouse.RELEASED);break;}
-		
 		case DRAGGED:
 			if(canvas.getMode()==Mode.MOVEPARTY) {MovePartyHandler.handle(canvas, x, y);break;}		
 		case PRESSED:
