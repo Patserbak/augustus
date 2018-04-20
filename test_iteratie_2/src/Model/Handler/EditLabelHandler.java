@@ -72,7 +72,7 @@ public class EditLabelHandler extends Handler{
 	 * Handle a label being edited.
 	 * @param canvas		The canvas to edit.
 	 * @param label			The label being edited.
-	 * @param char			The key character used to edit the label.
+	 * @param character			The key character used to edit the label.
 	 * @param x			The x coordinate of the mouse event used to handle this event.
 	 * @param y			The y coordinate of the mouse event used to handle this event.
 	 */

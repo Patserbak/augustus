@@ -205,7 +205,7 @@ public class Canvas {
 	/**
 	 *  Sets the collection of messages of the canvas to a given collection.
 	 * 
-	 * @param parties	The given collection of messages.
+	 * @param messages	The given collection of messages.
 	 */
 	public void setMessages(HashSet<Message> messages) {
 		this.messages = messages;
