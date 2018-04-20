@@ -45,6 +45,9 @@ public class MyScreen {
 	 * @param screen	The screen to be handled and edited.
 	 */
 	public void mouseClicked(Mouse id, int x, int y, Screen screen) {
+		
+		ctrlPressed = false;
+		
 		// First check if a party label is left in a valid state + check if there are any interactions
 		if (!screen.getInteractions().isEmpty() && !EditLabelHandler.editLabelModeParty(screen.getSubWindows().lastElement())) {
 			// Determine Canvas 
