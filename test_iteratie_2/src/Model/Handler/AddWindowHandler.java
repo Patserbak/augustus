@@ -10,18 +10,16 @@ import Model.Party;
 /**
  * A handler that handles the actions of a window being added.
  */
-
 public class AddWindowHandler extends Handler{
 	
 	// private static Random randNumberPos = new Random();
 	private static final int c = 10;
 	
 	/**
-	 * Pushes a cloned version of the top window of the provided stack onto that stack.
+	 * Handles a window being added to the given stack of subwindows.
 	 * 
-	 * @param subWindows 	Provided Stack of Windows
+	 * @param subWindows 	The given stack of subwindows.
 	 */
-	
 	public static void handle(Stack<Canvas> subWindows) {
 
 		// Add new Subwindow to current Interaction

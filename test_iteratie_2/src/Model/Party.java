@@ -3,10 +3,12 @@ package Model;
 import java.util.Random;
 
 /**
- * An system or human actor that sends and receives messages from other parties.
+ * An automated system or human actor that sends and receives messages from and to other parties.
+ * 
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
  */
 public abstract class Party {
-
+	
 	private String className; 
 	private Point posSeq;
 	private Point posComm;
@@ -18,10 +20,9 @@ public abstract class Party {
 	private Random randNumberPos;
 	private  int partyNumber;
 	private int selectedYPosition;
-
 	
 	/**
-	 * Constructor for a party
+	 * Constructor for a party.
 	 * @param cName		The new party's name.
 	 */
 	protected Party (String cName,int partyNumber){
@@ -36,6 +37,10 @@ public abstract class Party {
 		this.posSeq = new Point(0,0); //default position
 		this.partyNumber = partyNumber;
 	}
+	
+	/**
+	 * Constructor for a clone of this party.
+	 */
 	@Override
 	public Party clone() {
 		Party returnParty = null;
@@ -215,8 +220,8 @@ public abstract class Party {
 	}
 
 	/**
-	 * Sets the selected Y position to a given value.
-	 * @param selectedYPosition 	The value to which selected Y position should be set.
+	 * Sets this party's selected Y position to a given value.
+	 * @param selectedYPosition 	The given selected Y position.
 	 */
 	public void setSelectedYPosition(int selectedYPosition) {
 		this.selectedYPosition = selectedYPosition;

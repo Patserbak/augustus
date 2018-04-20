@@ -1,18 +1,16 @@
 package Model;
 /**
  * 
- * Invocation message in a diagram
+ * An invocation message in a diagram.
  * 
- * @author patserbak
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
  *
  */
 public class InvocationMessage extends Message {
 	/**
-	 * 
-	 * Creates an invocatioin message with a given label and a given result message
-	 * 
-	 * @param lab
-	 * @param resultMessage
+	 * Constructor.
+	 * @param lab				The new invocation message's label.
+	 * @param resultMessage		The new invocation message's result message.
 	 */
 	public InvocationMessage(String lab, ResultMessage resultMessage) {
 		super(lab);

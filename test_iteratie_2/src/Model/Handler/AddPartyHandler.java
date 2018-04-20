@@ -7,7 +7,7 @@ import Model.Object;
 import Model.Point;
 
 /**
- * A handler that handles the actions of a party being added.
+ * A handler that handles the actions of a party being added to a canvas.
  */
 public class AddPartyHandler extends Handler{
 	

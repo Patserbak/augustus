@@ -8,18 +8,16 @@ import Model.Window;
 /**
  * A handler that handles the actions of a window being resized.
  */
-
 public class ResizeWindowHandler extends Handler{
 
 	/**
 	 * Handles the resizing of a window
 	 * 
 	 * @param canvas	The canvas being resized.
-	 * @param x			New X coordinate
-	 * @param y			New Y coordinate
-	 * @param action	Resize action
+	 * @param x			The new x coordinate of the part being resized.
+	 * @param y			The new y coordinate of the part being resized.
+	 * @param action	The kind of resize being applied.
 	 */
-	
 	public static void handle(Canvas canvas, int x, int y, Window action) {
 		switch(action) {
 		case ResizeXRight:
@@ -54,8 +52,8 @@ public class ResizeWindowHandler extends Handler{
 	}
 	
 	/**
-	 * Updates the position of Messages of the given canvas.
-	 * @param canvas	Canvas for which to update the message positions
+	 * Updates the position of the messages of the given canvas.
+	 * @param canvas	Canvas for which to update the message positions.
 	 * 
 	 */
 	
@@ -69,8 +67,8 @@ public class ResizeWindowHandler extends Handler{
 	}
 	
 	/**
-	 * Updates the position of Parties of the given canvas.
-	 * @param canvas	Canvas for which to update the Party positions
+	 * Updates the position of the parties of the given canvas.
+	 * @param canvas	Canvas for which to update the party positions.
 	 * 
 	 */
 	

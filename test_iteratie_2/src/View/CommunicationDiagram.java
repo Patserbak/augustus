@@ -16,22 +16,9 @@ import Model.Canvas.*;
 
 /**
  * 
- * Visual representation of a Communication diagram  
+ * Visual representation of a communication diagram.
  * 
- * @author patserbak
- *
- * messageNumber: Keeping track of number of messages
- * sent by the different parties in the current 
- * communicationline.
- * 
- * A->B				1 O O O
- * 	  B->C			1 1 0 0
- * 		 C->D		1 1 1 0
- *    B->C          1 2 0 0
- *    B->C          1 3 0 0
- *    	 C->D       1 3 1 0
- * A->B             2 0 0 0
- *
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
  */
 public class CommunicationDiagram extends View {
 	
@@ -41,11 +28,10 @@ public class CommunicationDiagram extends View {
 	private Random randNumberPos;
 
 	/**
-	 * Draws Communication Diagram on canvas of 
-	 * the graph g with data of the parameter c
+	 * Draws a communication diagram of a given canvas.
 	 *
-	 * @param c
-	 * @param g
+	 * @param c		The canvas to draw.
+	 * @param g		The graphics object used for drawing.
 	 *
 	 */
 	@Override
@@ -79,6 +65,18 @@ public class CommunicationDiagram extends View {
 	}
 
 	private void drawMessages(){
+		
+		//messageNumber: Keeping track of number of messages
+		//sent by the different parties in the current 
+		//communicationline.
+		//
+		// A->B				1 O O O
+		//	  B->C			1 1 0 0
+		//		 C->D		1 1 1 0
+		//    B->C          1 2 0 0
+		//    B->C          1 3 0 0
+		//   	 C->D       1 3 1 0
+		// A->B             2 0 0 0
 		int[] messageNumber = new int[parties.size()];
 		Party[] parties = createPartyIndex();
 				

@@ -9,15 +9,13 @@ import Model.Mode;
 /**
  * A handler that handles the closing of a window.
  */
-
 public class CloseWindowHandler extends Handler{
 
 	/**
-	 * Closes marked windows.
+	 * Closes all subwindows that need to be closed from the given list of subwindows.
 	 * 
-	 * @param subWindows	List from which to close marked windows.
+	 * @param subWindows	The given list of subwindows.
 	 */
-	
 	public static void handle(ArrayList<Canvas> subWindows) {
 		// Find any canvas objects that need to be closed/deleted!
 		ArrayList<Canvas> toBeDeleted = new ArrayList<Canvas>();
@@ -32,11 +30,10 @@ public class CloseWindowHandler extends Handler{
 	}
 
 	/**
-	 * Closes marked windows.
+	 * Closes all subwindows that need to be closed from the given stack of subwindows.
 	 * 
-	 * @param subWindows	Stack from which to remove marked windows.
+	 * @param subWindows	The given stack of subwindows.
 	 */
-	
 	public static void handle(Stack<Canvas> subWindows) {
 		// Find any canvas objects that need to be closed/deleted!
 		ArrayList<Canvas> toBeDeleted = new ArrayList<Canvas>();

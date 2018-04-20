@@ -2,23 +2,25 @@ package Model;
 
 /**
  * A class used to store the coordinate of a mouse event or an element.
+ * 
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
  */
 public class Point {
 	
 	/**
-	 * The stored x coordinate.
+	 * The x coordinate.
 	 */
 	public int xCoordinate;
 	
 	/**
-	 * The stored y coordinate.
+	 * The y coordinate.
 	 */
 	public int yCoordinate;
 	
 	/**
 	 * The constructor for a point.
-	 * @param xCor		The x coordinate to store.
-	 * @param yCor		The y coordinate to store.
+	 * @param xCor		This new point's x coordinate.
+	 * @param yCor		This new point's y coordinate.
 	 */
 	public Point(int xCor, int yCor) {
 		this.xCoordinate = xCor;
@@ -26,16 +28,16 @@ public class Point {
 	}
 	
 	/**
-	 * Returns the stored x coordinate.
-	 * @return		The stored x coordinate.
+	 * Returns this point's x coordinate.
+	 * @return		This point's x coordinate.
 	 */
 	public int getX() {
 		return this.xCoordinate;
 	}
 	
 	/**
-	 * Returns the stored y coordinate.
-	 * @return		The stored y coordinate.
+	 * Returns this point's y coordinate.
+	 * @return		This point's y coordinate.
 	 */
 	public int getY() {
 		return this.yCoordinate;

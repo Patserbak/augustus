@@ -8,7 +8,6 @@ import Model.Point;
 /**
  * A handler that handles the actions of a window being moved.
  */
-
 public class MoveWindowHandler extends Handler {
 
 	/**
@@ -36,7 +35,6 @@ public class MoveWindowHandler extends Handler {
 	 * @param newXorigine		New origin of the window along the X-axis. 
 	 * @param newYorigine		New origin of the window along the Y-axis. 
 	 */
-	
 	public static void updatePartyPositions(Canvas canvas ,int oldXorigine,int oldYorigine,int newXorigine,int newYorigine) {
 		for( Party p :canvas.getParties()) {
 			
@@ -75,7 +73,6 @@ public class MoveWindowHandler extends Handler {
 	 * @param newXorigine		New origin of the window along the X-axis. 
 	 * @param newYorigine		New origin of the window along the Y-axis. 
 	 */
-	
 	public static void updateMessagePositions(Canvas canvas,int oldXorigine,int oldYorigine,int newXorigine,int newYorigine) {
 		for( Message m: canvas.getMessages()) {
 			

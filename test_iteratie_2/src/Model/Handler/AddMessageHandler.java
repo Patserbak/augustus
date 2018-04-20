@@ -14,15 +14,15 @@ import Model.Point;
 import Model.ResultMessage;
 
 /**
- * A handler handles the actions of a message being added to the canvas.
+ * A handler that handles the actions of a message being added to a canvas.
  */
 public class AddMessageHandler extends Handler {
 	
 	/**
 	 * Handles a message being added to the canvas
 	 * @param canvas		The canvas to edit.
-	 * @param x			Unused.
-	 * @param y			Unused.
+	 * @param x			Unused input.
+	 * @param y			Unused input.
 	 */
 	public static void handle(Canvas canvas, int x, int y) {
 		Party sender = null;
@@ -120,7 +120,6 @@ public class AddMessageHandler extends Handler {
 	 * @param message		The given message.
 	 * @return			The amount of messages preceding the given message.
 	 */
-	
 	public static int getAmountPredecessors(Canvas canvas, Message message) {
 		int amount = 0;
 		for (Message m : canvas.getMessages()) {

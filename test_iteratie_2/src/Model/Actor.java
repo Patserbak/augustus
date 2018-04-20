@@ -1,17 +1,16 @@
 package Model;
 /**
  * 
- * An Actor can send and receive messages to any party
+ * A class representing a human party, which can send and receive messages.
  * 
- * @author patserbak
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
  *
  */
 public class Actor extends Party {
 /**
+ * Constructor.
  * 
- * creates Actor and sets the class name for the Actor 
- * 
- * @param cName
+ * @param cName		The name of the new actor.
  */
 	public Actor(String cName,int partyNumber) {
 		super(cName,partyNumber);

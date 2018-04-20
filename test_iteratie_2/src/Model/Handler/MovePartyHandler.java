@@ -10,11 +10,6 @@ import Model.Point;
  */
 public class MovePartyHandler extends Handler {
 	
-	/* 
-	 * Selected Party's coordinates are replaced by
-	 * provided mouse coordinates.
-	 */ 
-	
 	/**
 	 * Handle a party being moved.
 	 * @param canvas		The canvas to edit.

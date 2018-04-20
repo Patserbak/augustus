@@ -12,6 +12,11 @@ import Model.Handler.AddWindowHandler;
 import Model.Handler.CloseWindowHandler;
 import Model.Handler.EditLabelHandler;
 
+/**
+ * A class that processes input related to the Screen class.
+ * 
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
+ */
 public class MyScreen {
 
 	/////////////////// Singleton ///////////////////
@@ -32,6 +37,13 @@ public class MyScreen {
 	
 	private boolean ctrlPressed =  false;
 	
+	/**
+	 * Handles actions affecting a certain Screen initiated by a mouse event.
+	 * @param id		The kind of mouse event.
+	 * @param x			The x coordinate of the mouse event.
+	 * @param y			The y coordinate of the mouse event.
+	 * @param screen	The screen to be handled and edited.
+	 */
 	public void mouseClicked(Mouse id, int x, int y, Screen screen) {
 		// First check if a party label is left in a valid state + check if there are any interactions
 		if (!screen.getInteractions().isEmpty() && !EditLabelHandler.editLabelModeParty(screen.getSubWindows().lastElement())) {
@@ -74,6 +86,13 @@ public class MyScreen {
 		}
 	}
 	
+	/**
+	 * Handles actions affecting a certain Screen initiated by a key event.
+	 * @param id		The kind of key event.
+	 * @param keyCode	The code of the key pressed.
+	 * @param keyChar	The key pressed.
+	 * @param screen	The screen to be handled and edited.
+	 */
 	public void keyPressed(int id, int keyCode, char keyChar, Screen screen) {
 
 		if( ctrlPressed && keyCode == 78 && (id == KeyEvent.KEY_PRESSED || id == KeyEvent.KEY_TYPED)) {
@@ -92,6 +111,12 @@ public class MyScreen {
 		}
 	}
 	
+	/**
+	 * Returns if the given coordinate is situated in the area of the window of the given Canvas.
+	 * @param x				The given x coordinate.
+	 * @param y				The given y coordinate.
+	 * @param lastElement	The given canvas.
+	 */
 	private static boolean isInArea(int x, int y, Canvas lastElement) {
 		int xLow = lastElement.getOrigineX() - 4 ;
 		int yLow = lastElement.getOrigineY() - 4;

@@ -20,20 +20,17 @@ import Model.Object;
 
 /**
  * 
- * Visual representation of a Communication diagram  
+ * Visual representation of a sequence diagram.  
  * 
- * @author Patserbak
- * 
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
  */
 public class SequenceDiagram extends View {
 	
 	/**
+	 * Draws a seuence diagram of the given canvas.
 	 * 
-	 * Draws Sequence Diagram on canvas of 
- 	 * the graph g with data of the parameter c
-	 * 
-	 * @param c
-	 * @param g
+	 * @param c		The canvas to draw.
+	 * @param g		The graphics object used for drawing.
 	 */
 	@Override
 	public void draw(Canvas c, Graphics g) {

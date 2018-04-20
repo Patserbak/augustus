@@ -5,18 +5,18 @@ import java.awt.Graphics;
 import Model.Canvas;
 /**
  * 
- * Visual representation of the canvas
+ * Visual representation of a canvas.
  * 
- * @author patserbak
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
  *
  */
 public abstract class View {
 	/**
 	 * 
-	 * Draws data from parameter canvas on the canvas of g
+	 * Draws a visual represntation of a given canvas.
 	 * 
-	 * @param canvas
-	 * @param g
+	 * @param canvas		The canvas to draw.
+	 * @param g				The graphics object used for drawing.
 	 */
 	public void draw(Canvas canvas, Graphics g) {}
 	

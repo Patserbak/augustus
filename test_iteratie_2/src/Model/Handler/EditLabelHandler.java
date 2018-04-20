@@ -16,8 +16,8 @@ import Model.Point;
 public class EditLabelHandler extends Handler{
 	
 	/**
-	 * Handle a label being edited.
-	 * @param canvas		The canvas to edit.
+	 * Handles a label being edited.
+	 * @param canvas		The canvas to in which the label is present.
 	 * @param label			The label being edited.
 	 * @param x			The x coordinate of the mouse event used to handle this event.
 	 * @param y			The y coordinate of the mouse event used to handle this event.
@@ -26,6 +26,15 @@ public class EditLabelHandler extends Handler{
 		handle(canvas, label, Character.MIN_VALUE, x, y);
 	}
 	
+	/**
+	 * Handles a label being edited.
+	 * @param canvas		The canvas to in which the label is present.
+	 * @param label			The label being edited.
+	 * @param party			The party which the given label belongs to.
+	 * @param character		The key character used to edit the label.
+	 * @param x				The x coordinate of the mouse event used to handle this event.
+	 * @param y				The y coordinate of the mouse event used to handle this event.
+	 */
 	public static void handle(Canvas canvas, Label label, Party party, char character, int x, int y) {
 		
 		if(label.getSelected()) {
@@ -129,12 +138,11 @@ public class EditLabelHandler extends Handler{
 	}
 	
 	/**
-	 * Checks whether a canvas is the label editing mode of a party or not.
+	 * Checks whether a canvas is in the label editing mode of a party or not.
 	 * 
 	 * @param canvas 	The canvas to check.
 	 * @return			True if the canvas is in the label editing mode for a certain party.
 	 */
-	
 	static public boolean editLabelModeParty(Canvas  canvas) {
 		for(Party p : canvas.getParties()){
 			if(p.getLabel().getSelected()) {
@@ -145,12 +153,11 @@ public class EditLabelHandler extends Handler{
 	}
 	
 	/**
-	 * Checks whether a canvas is the label editing mode of a message or not.
+	 * Checks whether a canvas is in the label editing mode of a message or not.
 	 * 
 	 * @param canvas 	The canvas to check.
 	 * @return			True if the canvas is in the label editing mode for a certain message.
 	 */
-		
 	static public boolean editLabelModeMessage(Canvas canvas) {
 		for( Message m : canvas.getMessages()) {
 			if( m.getClass() == InvocationMessage.class && m.getLabel().getSelected()) {

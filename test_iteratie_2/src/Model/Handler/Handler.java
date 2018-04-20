@@ -7,7 +7,7 @@ import Model.Object;
 import Model.Party;
 
 /**
- * A sequence of actions that change the state of a canvas.
+ * A class that handles a sequence of actions that change the state of a canvas.
  */
 public abstract class Handler {
 	
@@ -15,7 +15,6 @@ public abstract class Handler {
 	 * Perform a sequence of actions that change the state of a canvas.
 	 * @param canvas		The canvas to edit.
 	 */
-	
 	public static Party getPartyAt(int x, int y, Canvas canvas) {
 		if(canvas.getView() == Canvas.View.SEQUENCE) {return getPartySequenceDiagram(x,y,canvas);}
 	    else {return getPartyCommunicationDiagram(x,y,canvas);}

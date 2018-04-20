@@ -16,10 +16,10 @@ import View.View;
 
 /**
  * A window for custom drawing.
- * This class is an extension of the class MyCanvasWindow.
+ * This class is an extension of the class CanvasWindow.
  * 
  * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
- * @version 1.0
+ * @version 2.0
  *
  */
 public class MyCanvasWindow extends CanvasWindow{
@@ -34,7 +34,6 @@ public class MyCanvasWindow extends CanvasWindow{
 	 * 
 	 * @param title 		The title for this window.
 	 */
-	
 	public MyCanvasWindow(String title) {
 		super(title);
 	}
@@ -44,7 +43,6 @@ public class MyCanvasWindow extends CanvasWindow{
 	 * 
 	 * @param g 		The Graphics object used for painting the window.
 	 */
-	
 	@Override
 	protected void paint(Graphics g){
 		g.setColor(Color.GRAY);
@@ -74,7 +72,6 @@ public class MyCanvasWindow extends CanvasWindow{
 	 * @param y 			The y coordinate clicked.
 	 * @param clickCount 	The amount of times clicked.
 	 */
-	
 	@Override
 	protected void handleMouseEvent(int id, int x, int y, int clickCount){
 		// 
@@ -108,13 +105,12 @@ public class MyCanvasWindow extends CanvasWindow{
 	}
 	
 	/**
-	 * Handles an event where a key is pressed.
+	 * Handles an event where a key on the keyboard is pressed.
 	 * 
 	 * @param id 		The kind of key event.
 	 * @param keyCode		The code of the key pressed.
 	 * @param keyChar		The key pressed.
 	 */
-	
 	@Override
 	protected void handleKeyEvent(int id, int keyCode, char keyChar){
 		myScreen.keyPressed(id, keyCode, keyChar, screen);

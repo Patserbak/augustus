@@ -15,10 +15,9 @@ import Model.Party;
 public class DeleteElementHandler extends Handler{
 	
 	/**
-	 * Handles an element being deleted on the canvas.
+	 * Handles an element being deleted from the given canvas.
 	 * @param canvas		The canvas to edit.
 	 */
-	
 	public static void handle(Canvas canvas) {
 		LinkedList<Party> toDeleteParties = new LinkedList<Party>();
 		LinkedList<Message> toDeleteMessages = new LinkedList<Message>();
