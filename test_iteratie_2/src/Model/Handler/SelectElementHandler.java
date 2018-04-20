@@ -161,7 +161,7 @@ public class SelectElementHandler extends Handler {
 		}
 	}
 
-	private static void deselectAll(Canvas canvas) {
+	public static void deselectAll(Canvas canvas) {
 		deselectParties(canvas);
 		deselectMessages(canvas);
 	}

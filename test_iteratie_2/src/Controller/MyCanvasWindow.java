@@ -24,8 +24,6 @@ import View.View;
  */
 public class MyCanvasWindow extends CanvasWindow{
 	
-	
-	private Canvas canvas;
 	private Screen screen = new Screen(); //Screen.getInstance();
 	private MyScreen myScreen = new MyScreen(); //MyScreen.getInstance();
 	
@@ -76,7 +74,7 @@ public class MyCanvasWindow extends CanvasWindow{
 	protected void handleMouseEvent(int id, int x, int y, int clickCount){
 		// 
 		if( !screen.getInteractions().isEmpty()) {
-			this.canvas = screen.getSubWindows().lastElement();
+			Canvas canvas = screen.getSubWindows().lastElement();
 			
 			System.out.println("######## "+canvas.getMode()+" ########");
 			
