@@ -123,13 +123,13 @@ public class MyCanvasWindow extends CanvasWindow{
 	
 	public static void main(String[] args) {
 		
+		MyCanvasWindow myCanvas = new MyCanvasWindow("My Canvas Window");
+		
 //		2 -- Create a recording
 //	    String pathPrefix =
 //		 "C:\\Users\\Gebruiker\\Documents\\SourceTree\\test_iteration_2\\test_iteratie_2\\src\\tests\\recordings\\";
-//		 String newFile = 
-//		 "moveParty\\moveMultipleSeq";
+//		 String newFile = "moveParty/moveMultipleCom";
 //	     String filePath = pathPrefix + newFile;
-	     MyCanvasWindow myCanvas = new MyCanvasWindow("My Canvas Window");
 //		 myCanvas.recordSession(filePath);
 		
 //		1 -- Run the interactrr
