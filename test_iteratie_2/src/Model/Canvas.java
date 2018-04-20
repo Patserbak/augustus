@@ -8,10 +8,9 @@ import java.util.Stack;
 import Model.Handler.AddMessageHandler;
 
 /**
+ * A system of parties and messages.
  * 
- * A system of parties and messages and their connection between them 
- * @author patserbak
- *
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
  */
 public class Canvas {
 
@@ -28,14 +27,16 @@ public class Canvas {
 	private frameWork framework;
 	private Interaction interaction = null; 
 	public boolean updated = false;
-	/**
-	 * 
-	 * creates canvas with a given width and a given height 
-	 * 
-	 * @param width
-	 * @param height
-	 */
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param width		The new canvas's wodth.
+	 * @param height	The new canvas's height.
+	 * @param origineX	The new canvas's x coordinate of origin.
+	 * @param origineY	The new canvas's y coordinate of origin.
+	 * @param i			The new canvas's interaction.
+	 */
 	public Canvas(int width, int height, int origineX, int origineY, Interaction i) {
 		this.parties = new HashSet<Party>();
 		this.messages = new HashSet<Message>();
@@ -46,59 +47,107 @@ public class Canvas {
 		this.origineX= origineX;
 		this.origineY= origineY;
 	}
-
+	
+	/**
+	 * Return this canvas's mode.
+	 * @return	This canvas's mode.
+	 */
 	public Mode getMode() {
 		return mode;
 	}
 	
+	/**
+	 * Sets this canvas's mode to edit party mode.
+	 */
 	public void setEditPartyMode() {
 		mode = Mode.EDITPARTY;
 	}
 	
+	/**
+	 * Sets this canvas's mode to edit message mode.
+	 */
 	public void setEditMessageMode() {
 		mode = Mode.EDITMESSAGE;
 	}
 	
+	/**
+	 * Sets this canvas's mode to move party mode.
+	 */
 	public void setMovePartyMode() {
 		mode = Mode.MOVEPARTY;
 	}
 	
+	/**
+	 * Sets this canvas's mode to add message mode.
+	 */
 	public void setAddMessageMode() {
 		mode = Mode.ADDMESSAGE;
 	}
 	
+	/**
+	 * Sets this canvas's mode to default mode.
+	 */
 	public void setDefaultMode() {
 		mode = Mode.DEFAULT;
 	}
 	
-	
+	/**
+	 * An enumeration that indicates the view state of this canvas.
+	 */
 	public enum View{SEQUENCE, COMMUNICATION}
 	
+	/**
+	 * Returns this canvas's view.
+	 * @return		This canvas's view.
+	 */
 	public View getView() {
 		return view;
 	}
 	
+	/**
+	 * Sets this canvas's view to a sequence diagram.
+	 */
 	public void setSequenceDiagram() {
 		view = View.SEQUENCE;
 	}
 	
+	/**
+	 * Sets this canvas's view to a communication diagram.
+	 */
 	public void setCommunicationDiagram() {
 		view = View.COMMUNICATION;
 	}
 	
+	/**
+	 * Returns this canvas's queue of result messages.
+	 * @return		This canvas's queue of result messages.
+	 */
 	public ArrayList<ResultMessage> getResultQueue() {
 		return resultQueue;
 	}
 	
+	/**
+	 * Adds a result message to this canvas's queue of result messages
+	 * @param m		The result message to be added.
+	 */
 	public void addMessageResultQueue(ResultMessage m) {
 		resultQueue.add(m);
 	}
 	
-	
+	/**
+	 * Removes a result message from this canvas's queue of result messages
+	 * @param m		The result message to be removed.
+	 */
 	public void deleteMessageResultQueue(ResultMessage m) {
 		resultQueue.remove(m);
 	}
 	
+	/**
+	 * Searches for a result message in this canvas's queue with the given sender and receiver.
+	 * @param s		The given sender.
+	 * @param r		The given receiver.
+	 * @return		The equivalent result message if it exists. Null otherwise.
+	 */
 	public ResultMessage searchResultQueue(Party s, Party r){
 		
 		ResultMessage result = null;
@@ -110,6 +159,12 @@ public class Canvas {
 		return result;
 	}
 	
+	/**
+	 * Searches for an invocation message in this canvas with the given sender and receiver.
+	 * @param s		The given sender.
+	 * @param r		The given receiver.
+	 * @return		The equivalent invocation message if it exists. Null otherwise.
+	 */
 	public InvocationMessage findInvocationMessage(Party s, Party r) {
 		for(Message m : messages) {
 			if(s == m.getSentBy() && r == m.getReicevedBy() && m.getClass()==InvocationMessage.class) {
@@ -120,17 +175,18 @@ public class Canvas {
 	}
 	
 	/**
-	 * returns collection of all the parties in the canvas
+	 * Returns the collection of all the parties in the canvas.
 	 * 
-	 * @return
+	 * @return		This canvas's parties.
 	 */
 	public HashSet<Party> getParties() {
 		return parties;
 	}
+	
 	/**
-	 *  sets all the parties in the canvas with a given collection
+	 *  Sets the collection of parties of the canvas to a given collection.
 	 * 
-	 * @param parties
+	 * @param parties	The given collection of parties.
 	 */
 	public void setParties(HashSet<Party> parties) {
 		this.parties = parties;
@@ -138,95 +194,97 @@ public class Canvas {
 
 	/**
 	 * 
-	 * returns collection of all messages in the canvas
+	 * Returns the collection of all messages in the canvas.
 	 * 
-	 * @return
+	 * @return		This canvas's parties.
 	 */
 	public HashSet<Message> getMessages() {
 		return messages;
 	}
+	
 	/**
+	 *  Sets the collection of messages of the canvas to a given collection.
 	 * 
-	 * sets all the messages in the canvas with a given collection
-	 * 
-	 * @param messages
+	 * @param parties	The given collection of messages.
 	 */
 	public void setMessages(HashSet<Message> messages) {
 		this.messages = messages;
 	}
 	
 	/**
+	 * Returns this canvas's width.
 	 * 
-	 * returns the width of the canvas
-	 * 
-	 * @return
+	 * @return		This canvas's width.
 	 */
 	public int getWidth() {
 		return this.width;
 	}
+	
 	/**
+	 * Returns this canvas's height.
 	 * 
-	 * returns the height of the canvas
-	 * 
-	 * @return
+	 * @return		This canvas's height.
 	 */
 	public int getHeight() {
 		return this.height;
 	}
+	
 	/**
 	 * 
-	 * Adds a party to the canvas
+	 * Adds a party to the canvas.
 	 * 
-	 * @param partyToAdd
+	 * @param partyToAdd		The party to add.
 	 */
 	public void addParty(Party partyToAdd) {
 		if(partyToAdd != null){
 			this.parties.add(partyToAdd);
 		}
 	}
-	/**
+	
+	/** 
+	 * Adds a message to the canvas.
 	 * 
-	 * Adds a message to the canvas
-	 * 
-	 * @param messageToAdd
+	 * @param messageToAdd		The message to add.
 	 */
 	public void addMessage(Message messageToAdd){
 		if(messageToAdd != null){
 			this.messages.add(messageToAdd);
 		}
 	}
+	
 	/**
 	 * 
-	 * Deletes a party in the canvas
+	 * Deletes a party from the canvas
 	 * 
-	 * @param delParty
+	 * @param delParty		The party to delete.
 	 */
 	public void deleteParty(Party delParty){
 		this.parties.remove(delParty);
 	}
+	
 	/**
 	 * 
-	 * Deletes a message in the canvas
+	 * Deletes a message from the canvas.
 	 * 
-	 * @param delMessage
+	 * @param delMessage		The message to delete.
 	 */
 	public void deleteMessage(Message delMessage){
 		this.messages.remove(delMessage);
 	}
+	
 	/**
-	 * 
-	 * Switch from diagram
-	 * 
+	 * Switch this canvas's diagram type.
 	 */
 	public void switchView() {
 		if(getView() == View.SEQUENCE) {setCommunicationDiagram();}
 		else if(getView() == View.COMMUNICATION) {setSequenceDiagram();}	
 	}
+	
 	/**
 	 * 
-	 * Makes copy of all the messages in the canvas
+	 * Makes a copy of all the messages in the canvas.
 	 * 
-	 * @return
+	 * @return		A copy of all the messages in the canvas.
 	 */
 	public HashSet<Message> copyMessages(){
 		HashSet<Message> copy = new HashSet<Message>();	
@@ -235,10 +293,9 @@ public class Canvas {
 		}
 		return copy;
 	}
+	
 	/**
-	 * 
-	 * Update the position of the labels after for example deletion of a message
-	 * 
+	 * Updates the position of the labels after for example deletion of a message.
 	 */
 	public void updateLabels(){
 		for(Message m : getMessages()) {
@@ -250,16 +307,20 @@ public class Canvas {
 		}
 	}
 	
-	
+	/**
+	 * Updates all the positions in the communication diagram view of this canvas.
+	 */
 	public void updatePosComm() {
 		messagesUpdate();
 	}
+	
 	private void messagesUpdate(){
 		LinkedList<LinkedList<Message>> listStacks = makeStackMessages();
 		for( LinkedList<Message> list : listStacks){
 			updatePosStackMessages(list);
 		}
 	}
+	
 	private LinkedList<LinkedList<Message>> makeStackMessages(){
 		
 		HashSet<Message> messageRemaining = new HashSet<Message>(this.messages);
@@ -334,6 +395,12 @@ public class Canvas {
 		}
 	}
 	
+	/**
+	 * Sort a given collection of messages by their order in the system.
+	 * 
+	 * @param unsortedMessages		The collection of messages to sort.
+	 * @return						The sorted list of messages.
+	 */
 	public static LinkedList<Message> messageSort(LinkedList<Message> unsortedMessages){
 		LinkedList<Message> sorted = new LinkedList<Message>();
 		int amount = unsortedMessages.size();
@@ -350,7 +417,13 @@ public class Canvas {
 		return sorted;
 	}
 	
-	//Return the message with the lowest order that is greater than or equal to i.
+	/**
+	 * Returns the message from the given collection with the lowest order that is greater than or equal to the given index.
+	 * 
+	 * @param unsortedMessages		The given collection of messages.
+	 * @param i						The given index.
+	 * @return						The message with the lowest order greater than or equal to the given index.
+	 */
 	public static Message getLowestOrderMessage(LinkedList<Message> unsortedMessages, int i) {
 		Message min = null;
 		int minimum = Integer.MAX_VALUE;
@@ -364,45 +437,99 @@ public class Canvas {
 		}
 		return min;
 	}
+	
+	/**
+	 * Returns this canvas's the x coordinate of origin.
+	 * @return		This canvas's x coordinate of origin.
+	 */
 	public int getOrigineX() {
 		return origineX;
 	}
-
+	
+	/**
+	 * Sets this canvas's x coordinate of origin to the given x coordinate.
+	 * @param origineX		The given x coordinate.
+	 */
 	public void setOrigineX(int origineX) {
 		this.origineX = origineX;
 	}
-
+	
+	/**
+	 * Returns this canvas's the y coordinate of origin.
+	 * @return		This canvas's y coordinate of origin.
+	 */
 	public int getOrigineY() {
 		return origineY;
 	}
-
+	
+	/**
+	 * Sets this canvas's y coordinate of origin to the given y coordinate.
+	 * @param origineY		The given y coordinate.
+	 */
 	public void setOrigineY(int origineY) {
 		this.origineY = origineY;
 	}
-
+	
+	/**
+	 * Returns the interaction this canvas is a part of.
+	 * @return		This canvas's interaction.
+	 */
 	public Interaction getInteraction() {
 		return interaction;
 	}
+	
+	/**
+	 * Sets this canvas's interaction to the given interaction.
+	 * @param i		The given interaction.
+	 */
 	public void setInteractioin(Interaction i) {
 		this.interaction = i;
 	}
-
+	
+	/**
+	 * Returns this canvas's framework.
+	 * @return		This canvas's framework.
+	 */
 	public frameWork getFramework() {
 		return framework;
 	}
-
+	
+	/**
+	 * Sets this canvas's framework to the given framework.
+	 * @param framework		The given framework.
+	 */
 	public void setFramework(frameWork framework) {
 		this.framework = framework;
 	}
+	
+	/**
+	 * Sets this canvas's mode to the given mode.
+	 * @param m		The given mode.
+	 */
 	public void setMode(Mode m) {
 		this.mode = m;
 	}
+	
+	/**
+	 * Resizes the right side of this canvas.
+	 * @param xMouse		The x coordinate to resize to.
+	 */
 	public void resizeXRightCanvas(int xMouse) {
 		this.width = Math.max(this.getFramework().getBar().getMinimumWidth()+4, xMouse - this.getOrigineX());
 	}
+	
+	/**
+	 * Resizes the lower side of this canvas.
+	 * @param yMouse		The y coordinate to resize to.
+	 */
 	public void resizeYLowerCanvas(int yMouse) {
 		this.height =  Math.max(this.getFramework().getBar().getHeight()+4, yMouse - this.getOrigineY());
 	}
+	
+	/**
+	 * Resizes the left side of this canvas.
+	 * @param xMouse		The x coordinate to resize to.
+	 */
 	public void resizeXLeftCanvas(int xMouse) {
 		int oldOrigine = this.getOrigineX();
 		int oldWidth = this.getWidth();
@@ -418,6 +545,11 @@ public class Canvas {
 			this. width = oldWidth;
 		}
 	}
+	
+	/**
+	 * Resizes the upper side of this canvas.
+	 * @param yMouse		The y coordinate to resize to.
+	 */
 	public void resizeYTopCanvas(int yMouse) {
 		int oldOrigine = this.getOrigineY();
 		int oldHeight = this.height;
@@ -433,13 +565,28 @@ public class Canvas {
 			this.height = oldHeight;
 		}
 	}
+	
+	/**
+	 * Sets this canvas's width to the given width.
+	 * @param width		The given width.
+	 */
 	public void setWidth(int width) {
 		this.width = width;
 	}
-
+	
+	/**
+	 * Sets this canvas's height to the given height.
+	 * @param height		The given height.
+	 */
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	
+	/**
+	 * Returns the first available number for parties in a given canvas.
+	 * @param canvas		The given canvas.
+	 * @return				The first available number for parties.
+	 */
 	public static int getAvailablePartyNumber(Canvas canvas) {
 		LinkedList<Party> copyParties = new LinkedList<Party>();
 		copyParties.addAll(canvas.getParties());		
@@ -463,6 +610,12 @@ public class Canvas {
 		}
 		return newPartyNumber;
 	}
+	
+	/**
+	 * Returns the first available number for messages in a given canvas.
+	 * @param canvas		The given canvas.
+	 * @return				The first available number for messags.
+	 */
 	public static int getAvailableMessageNumber(Canvas canvas) {
 		LinkedList<Message> copyMessages = new LinkedList<Message>();
 		if( !canvas.getMessages().isEmpty()) {
@@ -487,6 +640,13 @@ public class Canvas {
 		}
 		return newPartyNumber;
 	}
+	
+	/**
+	 * Returns the party in a given canvas that has the given party number.
+	 * @param canvas		The given canvas.
+	 * @param partyNumber	The given party number
+	 * @return				The party with the given party number if it exists. Null otherwise.
+	 */
 	public static Party findPartyByNumber(Canvas canvas,int partyNumber) {
 		Party returnParty =null;
 		for( Party p: canvas.getParties()) {
@@ -496,6 +656,13 @@ public class Canvas {
 		}
 		return returnParty;
 	}
+	
+	/**
+	 * Returns the message in a given canvas that has the given party number.
+	 * @param canvas		The given canvas.
+	 * @param partyNumber	The given party number.
+	 * @return				The message with the given party number if it exists. Null otherwise.
+	 */
 	public static Message findMessageByNumber(Canvas canvas,int partyNumber) {
 		Message returnMessage =null;
 		for( Message p: canvas.getMessages()) {
@@ -505,7 +672,12 @@ public class Canvas {
 		}
 		return returnMessage;
 	}
+	
+	/**
+	 * Deletes all this canvas's messages.
+	 */
 	public void deleteAllMessages() {
 		this.messages = new HashSet<Message>();
 	}
+	
 }

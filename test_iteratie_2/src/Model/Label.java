@@ -2,10 +2,10 @@ package Model;
 /**
  * Label of a message or party
  * 
- * @author patserbak
- *
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
  */
 public class Label {
+	
 	private String labelname;
 	private Point labelPositionSeq;
 	private Point labelPositionComm;
@@ -15,105 +15,111 @@ public class Label {
 	
 	/**
 	 * 
-	 * Creates label with a given name
+	 * Constructor.
 	 * 
-	 * @param labelName
+	 * @param labelName		The new label's name.
 	 */
 	public Label(String labelName) {
 		this.labelname = labelName;
 		this.labelPositionSeq = new Point(5,5);
 		this.labelPositionComm = new Point(5,5);
 	}
+	
 	/**
 	 * 
-	 * Returns the label name
+	 * Returns this label's name.
 	 * 
-	 * @return
+	 * @return		This label's name.
 	 */
 	public String getLabelname() {
 		return labelname;
 	}
+	
 	/**
+	 * Sets this label's name to a given name.
 	 * 
-	 * sets the label name with a given name
-	 * 
-	 * @param labelname
+	 * @param labelname		The given name.
 	 */
 	public void setLabelname(String labelname) {
 		this.labelname = labelname;
 	}
+	
 	/**
+	 * Returns this label's position in the sequence diagram.
 	 * 
-	 * Returns the position of the label in the sequence diagram
-	 * 
-	 * @return
+	 * @return		This label's position in the sequence diagram.
 	 */
 	public Point getLabelPositionSequence() {
 		return labelPositionSeq;
 	}
+	
 	/**
 	 * 
-	 * Sets the label on the given position in the sequence diagram
+	 * Sets this label's position in the sequence diagram to the given position.
 	 * 
-	 * @param labelPositionSeq
+	 * @param labelPositionSeq		The given position.
 	 */
 	public void setLabelPositionSeq(Point labelPositionSeq) {
 		this.labelPositionSeq = labelPositionSeq;
 	}
+	
 	/**
 	 * 
-	 * Sets the label on the given x and y coordinate in the sequence diagram
+	 * Sets this label's position in the sequence diagram to the given x and y coordinates.
 	 * 
-	 * @param x
-	 * @param y
+	 * @param x		The given x coordinate.
+	 * @param y		The given y coordinate.
 	 */
 	public void setLabelPositionSeq(int x, int y) {
 		labelPositionSeq.xCoordinate = x;
 		labelPositionSeq.yCoordinate = y;
 	}
+	
 	/**
+	 * Returns this label's position in the communication diagram.
 	 * 
-	 * Returns the label position in the communication diagram
-	 * 
-	 * @return
+	 * @return		This label's position in the communication diagram.
 	 */
 	public Point getLabelPositionComm() {
 		return labelPositionComm;
 	}
+	
 	/**
 	 * 
-	 * Sets the label on the given position in the communication diagram
+	 * Sets this label's position in the communication diagram to the given position.
 	 * 
-	 * @param labelPositionComm
+	 * @param labelPositionComm		The given position.
 	 */
 	public void setLabelPositionComm(Point labelPositionComm) {
 		this.labelPositionComm = labelPositionComm;
 	}
+	
 	/**
 	 * 
-	 * Sets the label on the given x and y coordinate in the sequence diagram
+	 * Sets this label's position in the communication diagram to the given x and y coordinates.
 	 * 
-	 * @param x
-	 * @param y
+	 * @param x		The given x coordinate.
+	 * @param y		The given y coordinate.
 	 */
 	public void setLabelPositionComm(int x, int y) {
 		labelPositionComm.xCoordinate = x;
 		labelPositionComm.yCoordinate = y;
 	}
+	
 	/**
 	 * 
-	 * Returns True if the label is selected
+	 * Returns whether or not this label is selected.
 	 * 
-	 * @return
+	 * @return		This label's selection status.
 	 */
 	public Boolean getSelected() {
 		return selected;
 	}
+	
 	/**
+	 * Sets this label's selection status to the given selection status.
 	 * 
-	 * Set true if the label is selected
-	 * 
-	 * @param selected
+	 * @param selected		The given selection status.
 	 */
 	public void setSelected(Boolean selected) {
 		this.selected = selected;
@@ -125,41 +131,42 @@ public class Label {
 		}
 		else{labelname = labelname+"|";}
 	}
+	
 	/**
+	 * Returns this label's width.
 	 * 
-	 * Returns the width of the label
-	 * 
-	 * @return
+	 * @return		This label's width.
 	 */
 	public int getWidth(){
 		return width;
 	}
+	
 	/**
+	 * Sets this label's width to the given width.
 	 * 
-	 * Sets the width of the label
-	 * 
-	 * @param w
-	 * @throws IllegalArgumentException
+	 * @param w								The given width.
+	 * @throws IllegalArgumentException		The given width is negative.
 	 */
 	public void setWidth(int w) throws IllegalArgumentException  {
 		if(w<0) {throw new IllegalArgumentException("Negative Width");}
 		width = w;
 	}
+	
 	/**
 	 * 
-	 * Returns the height of the label
+	 * Returns this label's height.
 	 * 
-	 * @return
+	 * @return		This label's height.
 	 */
 	public int getHeight() {
 		return height;
 	}
+	
 	/**
+	 * Sets this label's height to the given height.
 	 * 
-	 * sets the height of the label
-	 * 
-	 * @param h
-	 * @throws IllegalArgumentException
+	 * @param h								The given height.
+	 * @throws IllegalArgumentException		The given height is negative.
 	 */
 	public void setHeight(int h) throws IllegalArgumentException {
 		if(h<0) {throw new IllegalArgumentException("Negative Height");}

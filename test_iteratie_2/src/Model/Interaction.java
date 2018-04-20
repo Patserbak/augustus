@@ -4,8 +4,18 @@ import java.util.Random;
 import Model.Handler.MoveWindowHandler;
 import Model.Handler.ResizeWindowHandler;
 
+/**
+ * A collection of canvases that all share the same message system.
+ * 
+ * @author Kevin Lavrijssen, Wout Mees, Florent Nander Meijer, Robbe Keters
+ */
 public class Interaction {
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param i		The x and y coordinate of origin of the first canvas of the new interation.
+	 */
 	public Interaction(int i) {
 		subWindows = new ArrayList<Canvas>();
 		//int xOrigineRandom = randNumberPos.nextInt(250);
@@ -17,18 +27,37 @@ public class Interaction {
 
 	private ArrayList<Canvas> subWindows = new ArrayList<Canvas>();
 	//private Random randNumberPos = new Random();
-
+	
+	/**
+	 * Returns a collection of this interaction's subwindows (canvases).
+	 * @return	This interaction's subwindows.
+	 */
 	public ArrayList<Canvas> getSubWindows(){
 		return subWindows;
 	}
 	
+	/**
+	 * Deletes the given canvas from this interaction.
+	 * @param c		The canvas to delete.
+	 */
 	public void deleteCanvas(Canvas c) {
 		subWindows.remove(c);
 	}
+	
+	/**
+	 * Adds the given canvas to this interaction.
+	 * @param c		The canvas to add.
+	 */
 	public void addCanvas(Canvas c) {
 		c.setInteractioin(this);
 		subWindows.add(c);
 	}
+	
+	/**
+	 * Adjust a given canvas of this interaction based on the given kind of adjustment.
+	 * @param type				The given kind of adjustment
+	 * @param updatedCanvas		The given canvas.
+	 */
 	public void adjusted(ADJUSTED_TYPE type, Canvas updatedCanvas) {
 		// dececide what is adjusted
 		switch(type) {
@@ -52,6 +81,7 @@ public class Interaction {
 			updateDeletePartyOrMessage(updatedCanvas);
 		}	
 	}
+	
 	private void updateParties(Canvas updatedCanvas) {
 		if( subWindows.size() > 1 ) {
 			Canvas usedForFindingPartyNumber=null;
@@ -104,6 +134,7 @@ public class Interaction {
 			}
 		}
 	}
+	
 	private void updatePartyLabels(Canvas updatedCanvas) {
 		for(Canvas c : subWindows) {
 			for( Party p : c.getParties()) {
@@ -116,6 +147,7 @@ public class Interaction {
 			}
 		}
 	}
+	
 	private void updateMessages(Canvas updatedCanvas) {
 		if( subWindows.size() > 1 ) {
 			
@@ -170,6 +202,7 @@ public class Interaction {
 			
 		}
 	}
+	
 	private void updateMessageLabels(Canvas updatedCanvas) {
 		for(Canvas c : subWindows) {
 			for( Message p : c.getMessages()) {
@@ -179,6 +212,13 @@ public class Interaction {
 			}
 		}
 	}
+	
+	/**
+	 * Updates the properties of a given message from a given canvas to its new clone.
+	 * @param updatedCanvas		The cloned canvas.
+	 * @param newCanvas			The new canvas clone.
+	 * @param messageToAdd		The message to update.
+	 */
 	public static void updateMessagePropertiesAfterClone(Canvas updatedCanvas , Canvas newCanvas, Message messageToAdd ) {
 		// Update Message properties to new Canvas after clone!
 		int numberSentBy = Canvas.findPartyByNumber(updatedCanvas, messageToAdd.getSentBy().getPartyNumber()).getPartyNumber();
@@ -235,6 +275,7 @@ public class Interaction {
 			}
 		}
 	}
+	
 	private void updateDeletePartyOrMessage(Canvas updatedCanvas) {
 		updateMessages(updatedCanvas);
 		
@@ -286,6 +327,12 @@ public class Interaction {
 		}
 		*/
 	}
+	
+	/**
+	 * Copy messages from one canvas to another.
+	 * @param updatedCanvas			The canvas to copy from.
+	 * @param notUpdatedCanvas		The canvas to update.
+	 */
 	public static void copyMessages(Canvas updatedCanvas , Canvas notUpdatedCanvas) {
 		
 		int oldXorigine = updatedCanvas.getOrigineX();
