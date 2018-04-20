@@ -98,6 +98,10 @@ public class MyScreen {
 	 */
 	public void keyPressed(int id, int keyCode, char keyChar, Screen screen) {
 
+		if( id == KeyEvent.KEY_RELEASED){
+			ctrlPressed = false;
+		}
+		
 		if( ctrlPressed && keyCode == 78 && (id == KeyEvent.KEY_PRESSED || id == KeyEvent.KEY_TYPED)) {
 			AddInteractionHandler.handle(screen.getInteractions(), screen.getSubWindows());
 		
