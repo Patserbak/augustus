@@ -17,6 +17,8 @@ public class Canvas {
 	private HashSet<Party> parties;
 	private HashSet<Message> messages;
 	
+	private ArrayList<Message> sortedMessages;
+	
 	private int width;
 	private int height;
 	private ArrayList<ResultMessage> resultQueue = new ArrayList<ResultMessage>();
@@ -614,7 +616,7 @@ public class Canvas {
 	/**
 	 * Returns the first available number for messages in a given canvas.
 	 * @param canvas		The given canvas.
-	 * @return				The first available number for messags.
+	 * @return				The first available number for messages.
 	 */
 	public static int getAvailableMessageNumber(Canvas canvas) {
 		LinkedList<Message> copyMessages = new LinkedList<Message>();
@@ -680,4 +682,51 @@ public class Canvas {
 		this.messages = new HashSet<Message>();
 	}
 	
+	public ArrayList<Message> getSortedMessages() {
+		HashSet<Message> unsorted = new HashSet<Message>();
+		for(Message m : getMessages()){
+			unsorted.add(m);
+		}
+		return messageSort(unsorted);
+	}
+	
+	private ArrayList<Message> messageSort(HashSet<Message> unsortedMessages){
+		ArrayList<Message> sorted = new ArrayList<Message>();
+		int amount = unsortedMessages.size();
+		int index = 0;
+		int currentOrder = 1;
+		while(index < amount) {
+			Message lowest = getLowestOrderMessage(unsortedMessages, currentOrder);
+			currentOrder = lowest.getOrder();
+			unsortedMessages.remove(lowest);
+			sorted.add(lowest);
+			index++;
+		}
+		return sorted;
+	}
+	
+	//Return the message with the lowest order that is greater than or equal to i.
+	private Message getLowestOrderMessage(HashSet<Message> unsortedMessages, int i) {
+		Message min = null;
+		int minimum = Integer.MAX_VALUE;
+		int order;
+		for (Message m : unsortedMessages) {
+			order = m.getOrder();
+			if ((order >= i) && (order < minimum)) {
+				min = m;
+				minimum = order;
+			}
+		}
+		return min;
+	}
+	
+
+	public int getAmountPredecessors(Message message) {
+		int amount = 0;
+		for (Message m : getMessages()) {
+			if (m.getOrder() < message.getOrder())
+				amount++;
+		}
+		return amount;
+	}
 }

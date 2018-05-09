@@ -11,8 +11,12 @@ import Model.Canvas;
 import Model.Screen;
 import Model.Handler.EditLabelHandler;
 import View.CommunicationDiagram;
+import View.CommunicationState;
 import View.SequenceDiagram;
+import View.SequenceState;
 import View.View;
+import View.ViewContext;
+import View.ViewState;
 
 /**
  * A window for custom drawing.
@@ -53,12 +57,19 @@ public class MyCanvasWindow extends CanvasWindow{
 		g.setFont(font);
 				
 		for(Canvas c : screen.getSubWindows()) {
-			View v;
-			if (c.getView() == Canvas.View.SEQUENCE)
-				v = new SequenceDiagram();
-			else
-				v = new CommunicationDiagram();
-			v.draw(c, g);
+			ViewContext viewContext = new ViewContext();
+			ViewState v;
+			if(c.getView() == Canvas.View.SEQUENCE)
+				v = new SequenceState();
+			else 
+				v = new CommunicationState();
+			v.draw(viewContext, c, g);
+//			View v;
+//			if (c.getView() == Canvas.View.SEQUENCE)
+//				v = new SequenceDiagram();
+//			else
+//				v = new CommunicationDiagram();
+//			v.draw(c, g);
 		}
 	}
 	

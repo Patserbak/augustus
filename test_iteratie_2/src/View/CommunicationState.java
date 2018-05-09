@@ -5,14 +5,18 @@ import java.awt.Graphics;
 
 import Model.Actor;
 import Model.Canvas;
+import Model.InvocationMessage;
+import Model.Message;
 import Model.Party;
 import View.representation.ComActorRepresentation;
 import View.representation.ComLabelRepresentation;
+import View.representation.ComMessageRepresentation;
 import View.representation.ComObjectRepresentation;
 import View.representation.ComSimplePartyRepresentation;
 import View.representation.LabelRepresentation;
+import View.representation.MessageRepresentation;
 import View.representation.Representation;
-import View.representation.SimplePartyRepresentation;
+import View.representation.SimpleMessageRepresentation;
 
 public class CommunicationState implements ViewState {
 	
@@ -60,12 +64,25 @@ public class CommunicationState implements ViewState {
 	}
 
 	private void drawMessages() {
-		// TODO Auto-generated method stub
-		
+		for(Message m : canvas.getSortedMessages()){
+			MessageRepresentation messageRep;
+			
+			messageRep = new ComMessageRepresentation(m, new SimpleMessageRepresentation(m));
+			
+			messageRep.draw(canvas, graphics);
+			if(m.getClass().equals(InvocationMessage.class))
+				drawLabel(m);
+			
+		}
 	}
 	
 	private void drawLabel(Party p) {
 		LabelRepresentation labelRep = new ComLabelRepresentation(p.getLabel());
+		labelRep.draw(canvas, graphics);
+	}
+	
+	private void drawLabel(Message m) {
+		LabelRepresentation labelRep = new ComLabelRepresentation(m.getLabel());
 		labelRep.draw(canvas, graphics);
 	}
 }

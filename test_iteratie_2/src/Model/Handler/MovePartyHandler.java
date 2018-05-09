@@ -41,7 +41,7 @@ public class MovePartyHandler extends Handler {
 			}
 		}
 		if(canvas.getView() == Canvas.View.COMMUNICATION) {
-			selected.setPosComm(x-selected.getLabel().getWidth()/2, y);
+			selected.setPosComm(x, y);
 			selected.getLabel().setLabelPositionComm(x,y);
 		}
 	}

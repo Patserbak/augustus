@@ -17,10 +17,12 @@ import View.representation.ObjectRepresentation;
 import View.representation.PartyRepresentation;
 import View.representation.Representation;
 import View.representation.SeqActorRepresentation;
+import View.representation.SeqInvocationMessageRepresentation;
 import View.representation.SeqLabelRepresentation;
 import View.representation.SeqMessageRepresentation;
 import View.representation.SeqObjectRepresentation;
 import View.representation.SeqPartyRepresentation;
+import View.representation.SeqResultMessageRepresentation;
 import View.representation.SeqSimpleMessageRepresentation;
 import View.representation.SeqSimplePartyRepresentation;
 import View.representation.SimplePartyRepresentation;
@@ -89,14 +91,15 @@ public class SequenceState implements ViewState {
 	}
 
 	private void drawMessages() {
-		System.out.println(canvas.getSortedMessages().size());
 		for(Message m : canvas.getSortedMessages()){
 			MessageRepresentation messageRep;
-
-			if(m.getClass() != ResultMessage.class) 
+			if(m.getClass() != ResultMessage.class) {
+				messageRep = new SeqInvocationMessageRepresentation(m, new SeqMessageRepresentation(m, new SeqSimpleMessageRepresentation(m)));
 				drawLabel(m);
+			} else {
+				messageRep = new SeqResultMessageRepresentation(m, new SeqMessageRepresentation(m, new SeqSimpleMessageRepresentation(m)));
+			}
 			
-			messageRep = new SeqMessageRepresentation(m, new SeqSimpleMessageRepresentation(m));
 			messageRep.draw(canvas, graphics);
 		}
 		

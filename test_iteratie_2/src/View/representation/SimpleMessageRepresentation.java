@@ -9,7 +9,7 @@ public class SimpleMessageRepresentation implements Representation {
 
 	protected Message message;
 	
-	SimpleMessageRepresentation(Message m){
+	public SimpleMessageRepresentation(Message m){
 		this.message = m;
 	}
 	

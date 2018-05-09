@@ -33,6 +33,7 @@ public class AddPartyHandler extends Handler{
 		// EditLabelHandler.handle(canvas, label, x, y);
 		
 		label.setLabelPositionSeq(new Point(x, seqYLabel));
+		label.setLabelPositionComm(new Point(x, y));
 		
 		party.setLabel(label);
 		canvas.addParty(party);

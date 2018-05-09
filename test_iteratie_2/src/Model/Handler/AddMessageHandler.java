@@ -78,12 +78,11 @@ public class AddMessageHandler extends Handler {
 			canvas.addMessage(resultMessage);
 			
 			// Handle Invocation Message
-			Label labelInvocation = new Label("   ");
+			Label labelInvocation = new Label("");
 			labelInvocation.setSelected(true);
 			int invocLabelX = Math.max(invocationMessage.getReicevedBy().getPosSeq().getX(), invocationMessage.getSentBy().getPosSeq().getX()) - Math.abs( (invocationMessage.getReicevedBy().getPosSeq().getX() - invocationMessage.getSentBy().getPosSeq().getX() )/2);
 			int invocLabelY = canvas.getOrigineY() +canvas.getHeight()/6 + 42 + (50 * getAmountPredecessors(canvas, invocationMessage));
 			labelInvocation.setLabelPositionSeq(new Point(invocLabelX, invocLabelY));
-			
 			
 			invocationMessage.setLabel(labelInvocation);
 			
